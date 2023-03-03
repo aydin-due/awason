@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class Routes {
   static const String login = '/login';
+  static const String register = '/register';
 
   static final routes = <Route>[
     Route(route: login, screen: const LoginScreen()),
+    Route(route: register, screen: const RegisterScreen()),
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {

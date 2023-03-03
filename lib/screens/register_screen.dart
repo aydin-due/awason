@@ -1,8 +1,8 @@
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,22 @@ class LoginScreen extends StatelessWidget {
                   style: heading,
                 ),
               ),
-              const LoginForm(),
+              const RegisterForm(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(Texts.noTienesCuenta, style: plainText,),
+                  const Text(
+                    Texts.yaTienesCuenta,
+                    style: plainText,
+                  ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.register);
+                      Navigator.pushNamed(context, Routes.login);
                     },
-                    child: const Text(Texts.registrate, style: blueLink,),
+                    child: const Text(
+                      Texts.iniciaSesion,
+                      style: blueLink,
+                    ),
                   ),
                 ],
               ),
@@ -46,8 +52,8 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({
+class RegisterForm extends StatelessWidget {
+  const RegisterForm({
     Key? key,
   }) : super(key: key);
 
@@ -59,16 +65,52 @@ class LoginForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              Texts.subtitleLogin,
+              Texts.subtitleRegister,
               style: subtitle,
             ),
             const SizedBox(
               height: 10,
             ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    decoration: inputDecoration.copyWith(
+                      hintText: Texts.nombre,
+                      prefixIcon: const Icon(Icons.person),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,),
+                Expanded(
+                  child: TextField(
+                    decoration: inputDecoration.copyWith(
+                      hintText: Texts.apellido,
+                      prefixIcon: const Icon(Icons.person),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             TextField(
+              keyboardType: TextInputType.emailAddress,
               decoration: inputDecoration.copyWith(
                 hintText: Texts.correo,
                 prefixIcon: const Icon(Icons.email),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextField(
+              keyboardType: TextInputType.phone,
+              decoration: inputDecoration.copyWith(
+                hintText: Texts.telefono,
+                prefixIcon: const Icon(Icons.phone),
               ),
             ),
             const SizedBox(
@@ -83,12 +125,24 @@ class LoginForm extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            TextField(
+              decoration: inputDecoration.copyWith(
+                hintText: Texts.confirmarContra,
+                prefixIcon: const Icon(Icons.lock),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               style: blueBlockButton,
               onPressed: () {
                 // Navigator.pushNamed(context, Routes.home);
               },
-              child: const Text(Texts.entrar, style: blueButtonText,),
+              child: const Text(
+                Texts.continuar,
+                style: blueButtonText,
+              ),
             ),
           ],
         ));
