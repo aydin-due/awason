@@ -12,7 +12,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: const MaterialColor(0xFF160084, {
+          50: Color(0xFF558B2F),
+          100: Color(0xFF558B2F),
+          200: Color(0xFF558B2F),
+          300: Color(0xFF558B2F),
+          400: Color(0xFF558B2F),
+          500: Color(0xFF558B2F),
+          600: Color(0xFF558B2F),
+          700: Color(0xFF558B2F),
+          800: Color(0xFF558B2F),
+          900: Color(0xFF558B2F),
+        }),
       ),
       debugShowCheckedModeBanner: false,
       title: Texts.title,
