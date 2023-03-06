@@ -1,5 +1,4 @@
 class Texts {
-
   // login screen
   static const title = 'AwaSon';
   static const bienvenido = 'Bienvenido';
@@ -19,4 +18,14 @@ class Texts {
   static const yaTienesCuenta = '¿Ya tienes cuenta?';
   static const iniciaSesion = 'Inicia sesión';
   static const continuar = 'Continuar';
+
+  // continue register screen
+  static const vehiculo = 'Vehículo';
+  static const modelo = 'Modelo';
+  static const placa = 'Placa';
+  static const color = 'Color';
+  static const codigoPostal = 'Código postal';
+  static const precio = 'Precio';
+  static const precioDescripcion = 'Se le añadirán \$5 de servicio';
+  static const registrarme = 'Registrarme';
 }

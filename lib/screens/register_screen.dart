@@ -137,7 +137,7 @@ class RegisterForm extends StatelessWidget {
             ElevatedButton(
               style: blueBlockButton,
               onPressed: () {
-                // Navigator.pushNamed(context, Routes.home);
+                Navigator.pushNamed(context, Routes.continueRegister);
               },
               child: const Text(
                 Texts.continuar,
