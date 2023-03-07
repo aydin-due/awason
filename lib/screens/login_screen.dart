@@ -18,13 +18,13 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Image.asset('assets/blue_logo.png'),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: Text(
-                  Texts.bienvenido,
-                  style: heading,
-                ),
-              ),
+              const Text(
+              Texts.subtitleLogin,
+              style: subtitle,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
               const LoginForm(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -58,13 +58,6 @@ class LoginForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              Texts.subtitleLogin,
-              style: subtitle,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
             TextField(
               decoration: inputDecoration.copyWith(
                 hintText: Texts.correo,

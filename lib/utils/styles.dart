@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // colors
 const blue = Color(0xFF160084);
 const gray = Color(0xFFE5E5E5);
+const darkGray = Color(0xFFAFAFAF);
 
 // text styles
 const heading = TextStyle(
@@ -33,6 +34,12 @@ const plainText = TextStyle(
   fontWeight: FontWeight.w400,
 );
 
+const grayText = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+  color: darkGray
+);
+
 // input decoration
 const inputDecoration = InputDecoration(
   border: OutlineInputBorder(
@@ -48,6 +55,12 @@ const inputDecoration = InputDecoration(
 // buttons
 final blueBlockButton = ElevatedButton.styleFrom(
   minimumSize: const Size(double.infinity, 50),
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(10),
+  ),
+);
+
+final blueButton = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10),
   ),

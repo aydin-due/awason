@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 class Routes {
   static const String login = '/login';
   static const String register = '/register';
-  static const String continueRegister = '/continueRegister';
 
   static final routes = <Route>[
     Route(route: login, screen: const LoginScreen()),
     Route(route: register, screen: const RegisterScreen()),
-    Route(route: continueRegister, screen: const ContinueRegisterScreen()),
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
