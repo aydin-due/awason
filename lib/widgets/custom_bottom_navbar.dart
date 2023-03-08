@@ -11,10 +11,9 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<BottomNavBarProvider>(context);
-    final index = provider.currentIndex;
-
+    
     return BottomNavigationBar(
-        currentIndex: index,
+        currentIndex: provider.currentIndex,
         onTap: (index) => provider.currentIndex = index,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: Texts.inicio),

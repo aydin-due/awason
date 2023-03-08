@@ -1,5 +1,6 @@
 import 'package:awason/providers/providers.dart';
 import 'package:awason/screens/screens.dart';
+import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,17 +13,36 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List screens = [const HomeScreen(), const OrdersScreen(), const RequestsScreen()];
-
   @override
   Widget build(BuildContext context) {
+    final Widget content;
+    final String title;
     final provider = Provider.of<BottomNavBarProvider>(context);
-    final index = provider.currentIndex;
+
+    switch(provider.currentIndex){
+      case 0:
+        content = const HomeScreen();
+        title = Texts.inicio;
+        break;
+      case 1:
+        content = const OrdersScreen();
+        title = Texts.pedidos;
+        break;
+      case 2:
+        content = const RequestsScreen();
+        title = Texts.solicitudes;
+        break;
+      default:
+        content = const HomeScreen();
+        title = Texts.inicio;
+        break;
+    }
+
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: CustomAppBar(title: title,),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          child: screens[index]),
+          child: content),
       bottomNavigationBar: const CustomBottomNavBar(),
     );
   }

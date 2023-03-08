@@ -1,4 +1,6 @@
 class Texts {
+  static const awason = 'AwaSon';
+
   // login screen
   static const title = 'AwaSon';
   static const bienvenido = 'Bienvenido';
