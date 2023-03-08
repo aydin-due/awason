@@ -1,0 +1,1 @@
+export 'package:awason/providers/bottom_navbar_provider.dart';

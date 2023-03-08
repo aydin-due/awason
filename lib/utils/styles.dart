@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // colors
 const blue = Color(0xFF160084);
 const gray = Color(0xFFE5E5E5);
-const darkGray = Color(0xFFAFAFAF);
+const darkGray = Color(0xFF595959);
 
 // text styles
 const heading = TextStyle(
@@ -38,6 +38,18 @@ const grayText = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w400,
   color: darkGray
+);
+
+const appbarTitle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w700,
+  color: Colors.black,
+);
+
+const cardText = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+  color: Colors.black,
 );
 
 // input decoration

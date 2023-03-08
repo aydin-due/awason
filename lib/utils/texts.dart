@@ -34,4 +34,13 @@ class Texts {
   static const campoRequerido = 'Campo requerido';
   static const campoInvalido = 'Campo inválido';
   static const contrasenasNoCoinciden = 'Las contraseñas no coinciden';
+
+  // bottom nav bar
+  static const inicio = 'Inicio';
+  static const pedidos = 'Pedidos';
+  static const solicitudes = 'Solicitudes';
+
+  // home screen
+  static const activo = 'Actualmente estás activo';
+  static const inactivo = 'Actualmente estás inactivo';
 }

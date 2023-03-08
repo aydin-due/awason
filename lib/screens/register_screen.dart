@@ -97,7 +97,9 @@ class _RegisterFormState extends State<RegisterForm> {
                     style: blueButton,
                     onPressed: () {
                       if (_formKeys[currentStep].currentState!.validate()) {
-                        details.onStepContinue!();
+                        currentStep == 3
+                            ? Navigator.pushReplacementNamed(context, Routes.home)
+                            : details.onStepContinue!();
                       }
                     },
                     child: const Text(
