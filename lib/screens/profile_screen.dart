@@ -8,9 +8,10 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(title: Texts.miPerfil),
         body: SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             SizedBox(
@@ -47,12 +48,10 @@ class ProfileScreen extends StatelessWidget {
                           ],
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             BlueCircularIconButton(
-                                icon: Icons.arrow_back, onPressed: () => Navigator.pop(context)),
-                            BlueCircularIconButton(
-                                icon: Icons.edit_outlined, onPressed: () {})
+                                icon: Icons.edit_outlined, onPressed: () => Navigator.pushNamed(context, Routes.editProfile))
                           ],
                         
                         )

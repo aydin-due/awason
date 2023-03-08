@@ -50,4 +50,9 @@ class Texts {
   static const historial = 'Historial de pedidos';
 
   // profile screen
+  static const miPerfil = 'Mi perfil';
+
+  // edit profile screen
+  static const editarPerfil = 'Editar perfil';
+  static const guardar = 'Guardar';
 }

@@ -1,3 +1,4 @@
+export 'package:awason/screens/edit_profile_screen.dart';
 export 'package:awason/screens/profile_screen.dart';
 export 'package:awason/screens/orders_screen.dart';
 export 'package:awason/screens/requests_screen.dart';
