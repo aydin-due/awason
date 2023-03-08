@@ -3,25 +3,20 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget{
   const CustomAppBar({
-    Key? key, this.title = Texts.awason,
+    Key? key, this.title = Texts.title,
   }) : super(key: key);
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: const IconThemeData(color: Colors.black),
       backgroundColor: Colors.white,
       elevation: 0,
       title: Text(
         title,
         style: appbarTitle,
       ),
-      leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.black,
-          )),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 10),

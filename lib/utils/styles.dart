@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 const blue = Color(0xFF160084);
 const gray = Color(0xFFE5E5E5);
 const darkGray = Color(0xFF595959);
+const yellow = Color(0xFFFFC107);
 
 // text styles
 const heading = TextStyle(

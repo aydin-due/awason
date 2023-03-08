@@ -1,6 +1,4 @@
 class Texts {
-  static const awason = 'AwaSon';
-
   // login screen
   static const title = 'AwaSon';
   static const bienvenido = 'Bienvenido';
@@ -45,4 +43,9 @@ class Texts {
   // home screen
   static const activo = 'Actualmente estás activo';
   static const inactivo = 'Actualmente estás inactivo';
+
+  // drawer
+  static const verPerfil = 'Ver perfil';
+  static const cerrarSesion = 'Cerrar sesión';
+  static const historial = 'Historial de pedidos';
 }
