@@ -48,4 +48,6 @@ class Texts {
   static const verPerfil = 'Ver perfil';
   static const cerrarSesion = 'Cerrar sesión';
   static const historial = 'Historial de pedidos';
+
+  // profile screen
 }
