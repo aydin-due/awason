@@ -5,11 +5,13 @@ class Routes {
   static const String login = '/login';
   static const String register = '/register';
   static const String home = '/home';
+  static const String profile = '/profile';
 
   static final routes = <Route>[
     Route(route: login, screen: const LoginScreen()),
     Route(route: register, screen: const RegisterScreen()),
-    Route(route: home, screen: MainScreen())
+    Route(route: home, screen: const MainScreen()),
+    Route(route: profile, screen: const ProfileScreen())
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {

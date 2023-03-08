@@ -1,5 +1,6 @@
 import 'package:awason/screens/screens.dart';
 import 'package:awason/utils/utils.dart';
+import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -17,39 +18,13 @@ class CustomDrawer extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
-                  DrawerHeader(
-                    child: Column(
-                      children: [
-                        const CircleAvatar(
-                          backgroundColor: blue,
-                          radius: 30,
-                          child: Icon(
-                            Icons.person,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        const Text('Nombre Apellido'),
-                        const SizedBox(height: 5),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Icon(Icons.star, color: yellow, size: 17),
-                            SizedBox(width: 5),
-                            Text('4.5')
-                          ],
-                        )
-                      ],
-                    ),
+                  const DrawerHeader(
+                    child: UserDisplayer(name: 'Nombre Apellido', rating: 4.5,),
                   ),
                   ListTile(
                     leading: const Icon(Icons.person),
                     title: const Text(Texts.verPerfil),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
+                    onTap: () => Navigator.pushNamed(context, Routes.profile),
                   ),
                   ListTile(
                     leading: const Icon(Icons.watch_later_rounded),

@@ -15,13 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-              side: BorderSide(
-                color: Colors.grey.withOpacity(0.2),
-                width: 1,
-              ),
-            ),
+            shape: cardDecor,
             elevation: 0,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),

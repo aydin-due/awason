@@ -35,11 +35,8 @@ const plainText = TextStyle(
   fontWeight: FontWeight.w400,
 );
 
-const grayText = TextStyle(
-  fontSize: 16,
-  fontWeight: FontWeight.w400,
-  color: darkGray
-);
+const grayText =
+    TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: darkGray);
 
 const appbarTitle = TextStyle(
   fontSize: 20,
@@ -76,5 +73,13 @@ final blueBlockButton = ElevatedButton.styleFrom(
 final blueButton = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10),
+  ),
+);
+
+final cardDecor = RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(10),
+  side: BorderSide(
+    color: Colors.grey.withOpacity(0.2),
+    width: 1,
   ),
 );
