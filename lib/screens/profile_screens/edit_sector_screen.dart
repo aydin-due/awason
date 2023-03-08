@@ -29,41 +29,41 @@ class _EditSectorScreenState extends State<EditSectorScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             children: [
-              Column(
-                children: [
-                  DropdownButtonFormField(
-                    decoration: inputDecoration.copyWith(
-                      hintText: Texts.codigoPostal,
+              Expanded(
+                child: Column(
+                  children: [
+                    DropdownButtonFormField(
+                      decoration: inputDecoration.copyWith(
+                        hintText: Texts.codigoPostal,
+                      ),
+                      isExpanded: true,
+                      borderRadius: BorderRadius.circular(10),
+                      value: dropdownvalue,
+                      icon: const Icon(Icons.keyboard_arrow_down),
+                      items: items.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownvalue = newValue!;
+                        });
+                      },
                     ),
-                    isExpanded: true,
-                    borderRadius: BorderRadius.circular(10),
-                    value: dropdownvalue,
-                    icon: const Icon(Icons.keyboard_arrow_down),
-                    items: items.map((String items) {
-                      return DropdownMenuItem(
-                        value: items,
-                        child: Text(items),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownvalue = newValue!;
-                      });
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    style: blueBlockButton,
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text(
-                      Texts.guardar,
-                      style: blueButtonText,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              ElevatedButton(
+                      style: blueBlockButton,
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text(
+                        Texts.guardar,
+                        style: blueButtonText,
+                      ),
+                    ),
+                    const SizedBox(height: 20,)
             ],
           ),
         ));

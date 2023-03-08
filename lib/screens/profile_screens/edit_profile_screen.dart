@@ -24,90 +24,91 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            children: [
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            controller: nameController,
-                            decoration: inputDecoration.copyWith(
-                              hintText: Texts.nombre,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: nameController,
+                              decoration: inputDecoration.copyWith(
+                                hintText: Texts.nombre,
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return Texts.campoRequerido;
+                                }
+                                return null;
+                              },
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return Texts.campoRequerido;
-                              }
-                              return null;
-                            },
                           ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: TextFormField(
-                            controller: surnameController,
-                            decoration: inputDecoration.copyWith(
-                              hintText: Texts.apellido,
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: TextFormField(
+                              controller: surnameController,
+                              decoration: inputDecoration.copyWith(
+                                hintText: Texts.apellido,
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return Texts.campoRequerido;
+                                }
+                                return null;
+                              },
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return Texts.campoRequerido;
-                              }
-                              return null;
-                            },
                           ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: inputDecoration.copyWith(
+                          hintText: Texts.correo,
                         ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: inputDecoration.copyWith(
-                        hintText: Texts.correo,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return Texts.campoRequerido;
+                          }
+                          if (!value.contains('@') || !value.contains('.')) {
+                            return Texts.campoInvalido;
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return Texts.campoRequerido;
-                        }
-                        if (!value.contains('@') || !value.contains('.')) {
-                          return Texts.campoInvalido;
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: phoneController,
-                      keyboardType: TextInputType.phone,
-                      decoration: inputDecoration.copyWith(
-                        hintText: Texts.telefono,
+                      const SizedBox(
+                        height: 20,
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return Texts.campoRequerido;
-                        }
-                        if (value.length < 10) {
-                          return Texts.campoInvalido;
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
+                      TextFormField(
+                        controller: phoneController,
+                        keyboardType: TextInputType.phone,
+                        decoration: inputDecoration.copyWith(
+                          hintText: Texts.telefono,
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return Texts.campoRequerido;
+                          }
+                          if (value.length < 10) {
+                            return Texts.campoInvalido;
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                ElevatedButton(
                       style: blueBlockButton,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
@@ -119,10 +120,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         style: blueButtonText,
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ],
+                    const SizedBox(height: 20,)
+              ],
+            ),
           ),
         ));
   }
