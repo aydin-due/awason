@@ -1,5 +1,6 @@
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -46,44 +47,77 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   const LoginForm({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
   Widget build(BuildContext context) {
     return Align(
         alignment: Alignment.centerLeft,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextField(
-              decoration: inputDecoration.copyWith(
-                hintText: Texts.correo,
-                prefixIcon: const Icon(Icons.email),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFormField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: inputDecoration.copyWith(
+                  hintText: Texts.correo,
+                  prefixIcon: const Icon(Icons.email),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return Texts.campoRequerido;
+                  }
+                  if (!value.contains('@') || !value.contains('.')) {
+                    return Texts.campoInvalido;
+                  }
+                  return null;
+                },
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextField(
-              decoration: inputDecoration.copyWith(
-                hintText: Texts.contra,
-                prefixIcon: const Icon(Icons.lock),
+              const SizedBox(
+                height: 20,
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              style: blueBlockButton,
-              onPressed: () {
-                // Navigator.pushNamed(context, Routes.home);
-              },
-              child: const Text(Texts.entrar, style: blueButtonText,),
-            ),
-          ],
+              TextFormField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: inputDecoration.copyWith(
+                  hintText: Texts.contra,
+                  prefixIcon: const Icon(Icons.lock),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return Texts.campoRequerido;
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                style: blueBlockButton,
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.pushReplacementNamed(context, Routes.home);
+                  }
+                },
+                child: const Text(Texts.entrar, style: blueButtonText,),
+              ),
+            ],
+          ),
         ));
   }
 }

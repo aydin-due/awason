@@ -1,3 +1,4 @@
+import 'package:awason/screens/screens.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -60,13 +61,14 @@ class CustomDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            Divider(),
+            const Divider(),
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text(Texts.cerrarSesion),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: () => Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  (route) => false)
             ),
           ],
         ),
