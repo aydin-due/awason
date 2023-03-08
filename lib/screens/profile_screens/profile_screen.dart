@@ -81,6 +81,16 @@ class ProfileScreen extends StatelessWidget {
               trailing: BlueCircularIconButton(icon: Icons.edit_outlined, onPressed: () => Navigator.pushNamed(context, Routes.editSector),),
             ),
             const Divider(),
+            ListTile(
+              leading: const Icon(Icons.attach_money,
+                  color: Colors.black, size: 35),
+              title: const Text(Texts.precio),
+              subtitle: const Text(
+                '\$15.00',
+              ),
+              trailing: BlueCircularIconButton(icon: Icons.edit_outlined, onPressed: () => Navigator.pushNamed(context, Routes.editPrice),),
+            ),
+            const Divider(),
             
           ],
         ),
