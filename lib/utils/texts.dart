@@ -52,7 +52,9 @@ class Texts {
   // profile screen
   static const miPerfil = 'Mi perfil';
 
-  // edit profile screen
+  // edit carrier screen
   static const editarPerfil = 'Editar perfil';
   static const guardar = 'Guardar';
+  static const editarVehiculo = 'Editar vehículo';
+  static const editarSector = 'Editar sector';
 }

@@ -68,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
                 'Nissan Versa gris - AW8JSO',
                 overflow: TextOverflow.ellipsis,
               ),
-              trailing: BlueCircularIconButton(icon: Icons.edit_outlined, onPressed: (){},),
+              trailing: BlueCircularIconButton(icon: Icons.edit_outlined, onPressed: () => Navigator.pushNamed(context, Routes.editVehicle),),
             ),
             const Divider(),
             ListTile(
@@ -78,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
               subtitle: const Text(
                 '12345',
               ),
-              trailing: BlueCircularIconButton(icon: Icons.edit_outlined, onPressed: (){},),
+              trailing: BlueCircularIconButton(icon: Icons.edit_outlined, onPressed: () => Navigator.pushNamed(context, Routes.editSector),),
             ),
             const Divider(),
             
@@ -86,29 +86,5 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     ));
-  }
-}
-
-class BlueCircularIconButton extends StatelessWidget {
-  const BlueCircularIconButton({
-    Key? key, required this.icon, required this.onPressed,
-  }) : super(key: key);
-  final IconData icon;
-  final Function onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: () => onPressed(),
-        icon: Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-              color: blue, borderRadius: BorderRadius.circular(20)),
-          child: Icon(
-            icon,
-            color: Colors.white,
-            size: 18,
-          ),
-        ));
   }
 }

@@ -7,6 +7,8 @@ class Routes {
   static const String home = '/home';
   static const String profile = '/profile';
   static const String editProfile = '/editProfile';
+  static const String editVehicle = '/editVehicle';
+  static const String editSector = '/editSector';
 
   static final routes = <Route>[
     Route(route: login, screen: const LoginScreen()),
@@ -14,6 +16,8 @@ class Routes {
     Route(route: home, screen: const MainScreen()),
     Route(route: profile, screen: const ProfileScreen()),
     Route(route: editProfile, screen: const EditProfileScreen()),
+    Route(route: editVehicle, screen: const EditVehicleScreen()),
+    Route(route: editSector, screen: const EditSectorScreen()),
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {

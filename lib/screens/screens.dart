@@ -1,3 +1,5 @@
+export 'package:awason/screens/edit_sector_screen.dart';
+export 'package:awason/screens/edit_vehicle_screen.dart';
 export 'package:awason/screens/edit_profile_screen.dart';
 export 'package:awason/screens/profile_screen.dart';
 export 'package:awason/screens/orders_screen.dart';
