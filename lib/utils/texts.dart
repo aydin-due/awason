@@ -57,4 +57,5 @@ class Texts {
   static const guardar = 'Guardar';
   static const editarVehiculo = 'Editar vehículo';
   static const editarSector = 'Editar sector';
+  static const editarPrecio = 'Editar precio';
 }
