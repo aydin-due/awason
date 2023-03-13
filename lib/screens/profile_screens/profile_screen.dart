@@ -120,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         trailing: BlueCircularIconButton(
                           icon: Icons.edit_outlined,
                           onPressed: () =>
-                              Navigator.pushNamed(context, Routes.editPrice)
+                              Navigator.pushNamed(context, Routes.editPrice, arguments: carrier.precioGarrafon)
                                   .then((value) => setState(() {})),
                         ),
                       ),
