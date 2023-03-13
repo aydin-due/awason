@@ -36,7 +36,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
-          final CarrierResponse carrier = snapshot.data!;
+          final Carrier carrier = snapshot.data!.data!;
           return Drawer(
             child: SafeArea(
               child: Column(
@@ -48,8 +48,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         DrawerHeader(
                           child: UserDisplayer(
                             name:
-                                '${carrier.data!.nombre} ${carrier.data!.apellidos}',
-                            rating: carrier.data!.calificacion!,
+                                '${carrier.nombre} ${carrier.apellidos}',
+                            rating: carrier.calificacion!,
                           ),
                         ),
                         ListTile(

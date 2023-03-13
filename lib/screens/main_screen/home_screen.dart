@@ -36,8 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
-          final CarrierResponse carrier = snapshot.data!;
-          isActive = carrier.data!.isActive!;
+          final Carrier carrier = snapshot.data!.data!;
+          isActive = carrier.isActive!;
           return Column(
             children: [
               Card(
