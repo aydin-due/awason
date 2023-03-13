@@ -79,4 +79,20 @@ class ApiService extends ChangeNotifier {
       throw Exception('Failed to create carrier.');
     }
   }
+
+  Future<GenericResponse> updateVehicle(Vehiculo vehiculo) async {
+    final id = await storage.read(key: 'user');
+    final url = Uri.https(baseUrl, '/carrier/updateVehiculo/$testId');
+    final Map<String, dynamic> body = {
+      'vehiculo': vehiculo.toJson(),
+    };
+    final response = await http.put(url, body: json.encode(body), headers: {
+      HttpHeaders.contentTypeHeader: 'application/json',
+    });
+    if (response.statusCode == 200) {
+      return GenericResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to create carrier.');
+    }
+  }
 }

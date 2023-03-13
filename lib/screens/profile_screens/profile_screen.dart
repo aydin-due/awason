@@ -95,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         trailing: BlueCircularIconButton(
                           icon: Icons.edit_outlined,
                           onPressed: () =>
-                              Navigator.pushNamed(context, Routes.editVehicle)
+                              Navigator.pushNamed(context, Routes.editVehicle, arguments: carrier.vehiculo)
                                   .then((value) => setState(() {})),
                         ),
                       ),

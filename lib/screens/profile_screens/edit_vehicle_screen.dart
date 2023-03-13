@@ -1,3 +1,6 @@
+import 'package:awason/models/responses/generic_response.dart';
+import 'package:awason/models/vehiculo.dart';
+import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +14,39 @@ class EditVehicleScreen extends StatefulWidget {
 
 class _EditVehicleScreenState extends State<EditVehicleScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController marcaController = TextEditingController();
   final TextEditingController modelController = TextEditingController();
   final TextEditingController colorController = TextEditingController();
   final TextEditingController placaController = TextEditingController();
 
+  updateVehicle() async {
+    final apiService = ApiService();
+    final vehicle = Vehiculo(
+      marca: marcaController.text,
+        modelo: modelController.text,
+        color: colorController.text,
+        matricula: placaController.text);
+    final GenericResponse response = await apiService.updateVehicle(vehicle);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(response.message ?? ''),
+        ),
+      );
+      if (response.status == Texts.success) {
+        Navigator.of(context).pop();
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final vehicle = ModalRoute.of(context)!.settings.arguments as Vehiculo;
+    marcaController.text = vehicle.marca ?? '';
+    modelController.text = vehicle.modelo ?? '';
+    colorController.text = vehicle.color ?? '';
+    placaController.text = vehicle.matricula ?? '';
+
     return Scaffold(
         appBar: const CustomAppBar(
           title: Texts.editarVehiculo,
@@ -30,6 +60,21 @@ class _EditVehicleScreenState extends State<EditVehicleScreen> {
                 Expanded(
                   child: Column(
                     children: [
+                      TextFormField(
+                        controller: marcaController,
+                        decoration: inputDecoration.copyWith(
+                          hintText: Texts.marca,
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return Texts.campoRequerido;
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       TextFormField(
                         controller: modelController,
                         decoration: inputDecoration.copyWith(
@@ -87,7 +132,7 @@ class _EditVehicleScreenState extends State<EditVehicleScreen> {
                   style: blueBlockButton,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.pop(context);
+                      updateVehicle();
                     }
                   },
                   child: const Text(
