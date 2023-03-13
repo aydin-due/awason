@@ -11,16 +11,6 @@ class ApiService extends ChangeNotifier {
   final String testId = '640cfe856782171c79344a10';
 
   Future<CarrierResponse> createCarrier(Carrier carrier) async {
-    print(carrier.nombre);
-    print(carrier.apellidos);
-    print(carrier.email);
-    print(carrier.contrasena);
-    print(carrier.numContacto);
-    print(carrier.precioGarrafon);
-    print(carrier.vehiculo!.matricula);
-    print(carrier.vehiculo!.marca);
-    print(carrier.vehiculo!.modelo);
-    print(carrier.vehiculo!.color);
     final Map<String, dynamic> body = {
       'nombre': carrier.nombre,
       'apellidos': carrier.apellidos,

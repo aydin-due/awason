@@ -96,8 +96,6 @@ class _RegisterFormState extends State<RegisterForm> {
             color: colorController.text,
             matricula: placaController.text));
     final CarrierResponse response = await _apiService.createCarrier(carrier);
-    print(response.status);
-    print(response.message);
     if (response.status == Texts.success) {
       storage.write(key: 'user', value: response.data!.sId);
       Navigator.pushNamed(context, Routes.home);
