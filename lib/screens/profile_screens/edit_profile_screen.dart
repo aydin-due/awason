@@ -1,4 +1,5 @@
 import 'package:awason/models/models.dart';
+import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final TextEditingController surnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+
+  updateDetails() async {
+    final apiService = ApiService();
+    final carrier = Carrier(
+        nombre: nameController.text,
+        apellidos: surnameController.text,
+        email: emailController.text,
+        numContacto: int.parse(phoneController.text));
+    final CarrierResponse response = await apiService.updateDetails(carrier);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(response.message ?? ''),
+        ),
+      );
+      if (response.status == Texts.success) {
+        Navigator.of(context).pop();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +139,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   style: blueBlockButton,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.pop(context);
+                      updateDetails();
                     }
                   },
                   child: const Text(
