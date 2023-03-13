@@ -1,4 +1,8 @@
 class Texts {
+  // api responses
+  static const success = 'SUCCESS';
+  static const failed = 'FAILED';
+
   // login screen
   static const title = 'AwaSon';
   static const bienvenido = 'Bienvenido';
@@ -24,6 +28,7 @@ class Texts {
   static const continuar = 'Continuar';
   static const vehiculo = 'Vehículo';
   static const modelo = 'Modelo';
+  static const marca = 'Marca';
   static const placa = 'Placa';
   static const color = 'Color';
   static const codigoPostal = 'Código postal';

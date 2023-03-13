@@ -1,5 +1,8 @@
+import 'package:awason/models/models.dart';
+import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -64,6 +67,7 @@ class _RegisterFormState extends State<RegisterForm> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController modelController = TextEditingController();
+  TextEditingController marcaController = TextEditingController();
   TextEditingController colorController = TextEditingController();
   TextEditingController placaController = TextEditingController();
   TextEditingController priceController = TextEditingController();
@@ -71,18 +75,38 @@ class _RegisterFormState extends State<RegisterForm> {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
-    GlobalKey<FormState>(),
   ];
-
   int currentStep = 0;
-  String dropdownvalue = 'Item 1';
-  var items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-  ];
+  final ApiService _apiService = ApiService();
+  final storage = const FlutterSecureStorage();
+
+  createCarrier() async {
+    final carrier = Carrier(
+        nombre: nameController.text,
+        apellidos: surnameController.text,
+        email: emailController.text,
+        numContacto: int.parse(phoneController.text),
+        contrasena: passwordController.text,
+        balance: 0,
+        calificacion: 0,
+        precioGarrafon: int.parse(priceController.text),
+        vehiculo: Vehiculo(
+            marca: marcaController.text,
+            modelo: modelController.text,
+            color: colorController.text,
+            matricula: placaController.text));
+    final CarrierResponse response = await _apiService.createCarrier(carrier);
+    print(response.status);
+    print(response.message);
+    if (response.status == Texts.success) {
+      storage.write(key: 'user', value: response.data!.sId);
+      Navigator.pushNamed(context, Routes.home);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(response.message ?? 'Error'),
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +121,8 @@ class _RegisterFormState extends State<RegisterForm> {
                     style: blueButton,
                     onPressed: () {
                       if (_formKeys[currentStep].currentState!.validate()) {
-                        currentStep == 3
-                            ? Navigator.pushReplacementNamed(context, Routes.home)
+                        currentStep == 2
+                            ? createCarrier()
                             : details.onStepContinue!();
                       }
                     },
@@ -121,7 +145,7 @@ class _RegisterFormState extends State<RegisterForm> {
         currentStep: currentStep,
         onStepContinue: () {
           setState(() {
-            if (currentStep < 3) {
+            if (currentStep < 2) {
               currentStep++;
             } else {
               currentStep = 0;
@@ -145,7 +169,6 @@ class _RegisterFormState extends State<RegisterForm> {
         steps: [
           _step1(),
           _step2(),
-          _step3(),
           _step4(),
         ]);
   }
@@ -154,7 +177,7 @@ class _RegisterFormState extends State<RegisterForm> {
     return Step(
         title: const Text(Texts.step4),
         content: Form(
-          key: _formKeys[3],
+          key: _formKeys[2],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -182,35 +205,6 @@ class _RegisterFormState extends State<RegisterForm> {
             ],
           ),
         ),
-        isActive: currentStep >= 3);
-  }
-
-  Step _step3() {
-    return Step(
-        title: const Text(Texts.step3),
-        content: Form(
-          key: _formKeys[2],
-          child: DropdownButtonFormField(
-            decoration: inputDecoration.copyWith(
-              hintText: Texts.codigoPostal,
-            ),
-            isExpanded: true,
-            borderRadius: BorderRadius.circular(10),
-            value: dropdownvalue,
-            icon: const Icon(Icons.keyboard_arrow_down),
-            items: items.map((String items) {
-              return DropdownMenuItem(
-                value: items,
-                child: Text(items),
-              );
-            }).toList(),
-            onChanged: (String? newValue) {
-              setState(() {
-                dropdownvalue = newValue!;
-              });
-            },
-          ),
-        ),
         isActive: currentStep >= 2);
   }
 
@@ -221,6 +215,21 @@ class _RegisterFormState extends State<RegisterForm> {
           key: _formKeys[1],
           child: Column(
             children: [
+              TextFormField(
+                controller: marcaController,
+                decoration: inputDecoration.copyWith(
+                  hintText: Texts.marca,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return Texts.campoRequerido;
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               TextFormField(
                 controller: modelController,
                 decoration: inputDecoration.copyWith(
