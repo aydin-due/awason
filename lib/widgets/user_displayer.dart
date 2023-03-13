@@ -6,7 +6,7 @@ class UserDisplayer extends StatelessWidget {
     Key? key, required this.name, required this.rating,
   }) : super(key: key);
   final String name;
-  final double rating;
+  final dynamic rating;
 
   @override
   Widget build(BuildContext context) {
