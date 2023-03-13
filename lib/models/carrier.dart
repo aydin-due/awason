@@ -4,15 +4,15 @@ class Carrier {
   Vehiculo? vehiculo;
   String? sId;
   bool? isActive;
-  int? balance;
+  dynamic balance;
   String? contrasena;
   int? iV;
   String? apellidos;
   String? email;
   String? nombre;
   int? numContacto;
-  int? precioGarrafon;
-  double? calificacion;
+  dynamic precioGarrafon;
+  dynamic calificacion;
 
   Carrier(
       {this.vehiculo,

@@ -33,10 +33,10 @@ class ApiService extends ChangeNotifier {
       'modelo': carrier.vehiculo!.modelo,
       'color': carrier.vehiculo!.color,
     };
-    final response = await http.post(
-      Uri.parse('$baseUrl/carrier/signup'),
-      body: jsonEncode(body),
-    );
+    final url = Uri.https(baseUrl, '/carrier/signup');
+    final response = await http.post(url, body: json.encode(body), headers: {
+      HttpHeaders.contentTypeHeader: 'application/json',
+    });
     if (response.statusCode == 200) {
       return CarrierResponse.fromJson(jsonDecode(response.body));
     } else {
@@ -45,8 +45,8 @@ class ApiService extends ChangeNotifier {
   }
 
   Future<CarrierResponse> getCarrier() async {
-    //final id = await storage.read(key: 'user');
-    final url = Uri.https(baseUrl, '/carrier/read/$testId');
+    final id = await storage.read(key: 'user');
+    final url = Uri.https(baseUrl, '/carrier/read/$id');
     final response = await http.get(url);
     if (response.statusCode == 200) {
       return CarrierResponse.fromJson(jsonDecode(response.body));
@@ -56,13 +56,11 @@ class ApiService extends ChangeNotifier {
   }
 
   Future<GenericResponse> updateStatus(bool status) async {
-    //final id = await storage.read(key: 'user');
-    print('en el api');
-    print(status);
+    final id = await storage.read(key: 'user');
     final Map<String, bool> body = {
       'isActive': status,
     };
-    final url = Uri.https(baseUrl, '/carrier/updateStatus/$testId');
+    final url = Uri.https(baseUrl, '/carrier/updateStatus/$id');
     final response = await http.put(url, body: json.encode(body), headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
     });
