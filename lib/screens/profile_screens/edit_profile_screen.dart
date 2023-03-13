@@ -1,3 +1,4 @@
+import 'package:awason/models/models.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final carrier = ModalRoute.of(context)!.settings.arguments as Carrier;
+    nameController.text = carrier.nombre ?? '';
+    surnameController.text = carrier.apellidos ?? '';
+    emailController.text = carrier.email ?? '';
+    phoneController.text = carrier.numContacto.toString();
     return Scaffold(
         appBar: const CustomAppBar(
           title: Texts.editarPerfil,
@@ -109,18 +115,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
                 ElevatedButton(
-                      style: blueBlockButton,
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: const Text(
-                        Texts.guardar,
-                        style: blueButtonText,
-                      ),
-                    ),
-                    const SizedBox(height: 20,)
+                  style: blueBlockButton,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: const Text(
+                    Texts.guardar,
+                    style: blueButtonText,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                )
               ],
             ),
           ),

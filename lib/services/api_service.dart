@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class ApiService extends ChangeNotifier {
   final String baseUrl = 'fuzzy-stockings-boa.cyclic.app';
   final storage = const FlutterSecureStorage();
-  final String testId = '640cfe856782171c79344a10';
+  final String testId = '640eadfd61b2786edd462911';
 
   Future<CarrierResponse> createCarrier(Carrier carrier) async {
     final Map<String, dynamic> body = {
@@ -36,7 +36,7 @@ class ApiService extends ChangeNotifier {
 
   Future<CarrierResponse> getCarrier() async {
     final id = await storage.read(key: 'user');
-    final url = Uri.https(baseUrl, '/carrier/read/$id');
+    final url = Uri.https(baseUrl, '/carrier/read/$testId');
     final response = await http.get(url);
     if (response.statusCode == 200) {
       return CarrierResponse.fromJson(jsonDecode(response.body));
