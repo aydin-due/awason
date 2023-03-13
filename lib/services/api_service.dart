@@ -111,4 +111,21 @@ class ApiService extends ChangeNotifier {
       throw Exception('Failed to create carrier.');
     }
   }
+
+  Future<CarriersResponse> login(String email, String password) async {
+    final url = Uri.https(baseUrl, '/carrier/signin');
+    final Map<String, dynamic> body = {
+      'email': email,
+      'contrasena': password,
+    };
+    final response = await http.post(url, body: json.encode(body), headers: {
+      HttpHeaders.contentTypeHeader: 'application/json',
+    });
+    if (response.statusCode == 200) {
+      return CarriersResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to create carrier.');
+    }
+  }
+
 }

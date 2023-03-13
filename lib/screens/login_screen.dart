@@ -1,5 +1,9 @@
+import 'package:awason/models/models.dart';
+import 'package:awason/models/responses/carrier_response.dart';
+import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -19,22 +23,28 @@ class LoginScreen extends StatelessWidget {
                 child: Image.asset('assets/blue_logo.png'),
               ),
               const Text(
-              Texts.subtitleLogin,
-              style: subtitle,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
+                Texts.subtitleLogin,
+                style: subtitle,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               const LoginForm(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(Texts.noTienesCuenta, style: plainText,),
+                  const Text(
+                    Texts.noTienesCuenta,
+                    style: plainText,
+                  ),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, Routes.register);
                     },
-                    child: const Text(Texts.registrate, style: blueLink,),
+                    child: const Text(
+                      Texts.registrate,
+                      style: blueLink,
+                    ),
                   ),
                 ],
               ),
@@ -59,6 +69,24 @@ class _LoginFormState extends State<LoginForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  login() async {
+    const storage = FlutterSecureStorage();
+    final apiService = ApiService();
+    final CarriersResponse response =
+        await apiService.login(emailController.text, passwordController.text);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(response.message ?? ''),
+        ),
+      );
+      if (response.status == Texts.success) {
+        storage.write(key: 'user', value: response.data![0].sId);
+        Navigator.pushReplacementNamed(context, Routes.home);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,10 +138,13 @@ class _LoginFormState extends State<LoginForm> {
                 style: blueBlockButton,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    Navigator.pushReplacementNamed(context, Routes.home);
+                    login();
                   }
                 },
-                child: const Text(Texts.entrar, style: blueButtonText,),
+                child: const Text(
+                  Texts.entrar,
+                  style: blueButtonText,
+                ),
               ),
             ],
           ),
