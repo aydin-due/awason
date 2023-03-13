@@ -2,6 +2,7 @@ import 'package:awason/screens/screens.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -19,7 +20,10 @@ class CustomDrawer extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: [
                   const DrawerHeader(
-                    child: UserDisplayer(name: 'Nombre Apellido', rating: 4.5,),
+                    child: UserDisplayer(
+                      name: 'Nombre Apellido',
+                      rating: 4.5,
+                    ),
                   ),
                   ListTile(
                     leading: const Icon(Icons.person),
@@ -38,13 +42,17 @@ class CustomDrawer extends StatelessWidget {
             ),
             const Divider(),
             ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text(Texts.cerrarSesion),
-              onTap: () => Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
-                  (route) => false)
-            ),
+                leading: const Icon(Icons.logout),
+                title: const Text(Texts.cerrarSesion),
+                onTap: () {
+                  const storage = FlutterSecureStorage();
+                  storage.delete(key: 'user');
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
+                      (route) => false);
+                }),
           ],
         ),
       ),

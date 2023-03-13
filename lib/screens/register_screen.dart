@@ -96,13 +96,15 @@ class _RegisterFormState extends State<RegisterForm> {
             color: colorController.text,
             matricula: placaController.text));
     final CarrierResponse response = await _apiService.createCarrier(carrier);
-    if (response.status == Texts.success) {
-      storage.write(key: 'user', value: response.data!.sId);
-      Navigator.pushNamed(context, Routes.home);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(response.message ?? 'Error'),
-      ));
+    if (context.mounted) {
+      if (response.status == Texts.success) {
+        storage.write(key: 'user', value: response.data!.sId);
+        Navigator.pushNamed(context, Routes.home);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(response.message ?? 'Error'),
+        ));
+      }
     }
   }
 

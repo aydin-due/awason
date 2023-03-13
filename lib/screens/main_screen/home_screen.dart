@@ -16,6 +16,17 @@ class _HomeScreenState extends State<HomeScreen> {
   final ApiService _apiService = ApiService();
   bool isActive = false;
 
+  updateStatus(bool status) async {
+    final GenericResponse response = await _apiService.updateStatus(status);
+    SnackBar snackBar = SnackBar(content: Text(response.message!));
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+    setState(() {
+      isActive = status;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -42,16 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const Spacer(),
                         Switch.adaptive(
                           value: isActive,
-                          onChanged: (value) async {
-                            isActive = value;
-                            final GenericResponse response =
-                                await _apiService.updateStatus(value);
-                            SnackBar snackBar =
-                                SnackBar(content: Text(response.message!));
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
-                            setState(() {});
-                          },
+                          onChanged: (value) => updateStatus(value),
                         )
                       ],
                     ),
