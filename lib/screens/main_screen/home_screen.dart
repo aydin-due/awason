@@ -1,4 +1,4 @@
-import 'package:awason/models/responses/carrier_response.dart';
+import 'package:awason/models/models.dart';
 import 'package:awason/services/api_service.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -16,19 +16,15 @@ class _HomeScreenState extends State<HomeScreen> {
   final ApiService _apiService = ApiService();
   bool isActive = false;
 
-  Future<CarrierResponse> getUserData() async {
-    // final String id = await storage.read(key: 'user') ?? '';
-    const String id = '640cfe856782171c79344a10';
-    return _apiService.getCarrier(id);
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getUserData(),
+        future: _apiService.getCarrier(),
         builder:
             (BuildContext context, AsyncSnapshot<CarrierResponse> snapshot) {
-          if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
+          if (!snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
+          }
           final CarrierResponse carrier = snapshot.data!;
           isActive = carrier.data!.isActive!;
           return Column(
@@ -46,10 +42,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         const Spacer(),
                         Switch.adaptive(
                           value: isActive,
-                          onChanged: (value) {
-                            setState(() {
-                              isActive = value;
-                            });
+                          onChanged: (value) async {
+                            isActive = value;
+                            final GenericResponse response =
+                                await _apiService.updateStatus(value);
+                            SnackBar snackBar =
+                                SnackBar(content: Text(response.message!));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                            setState(() {});
                           },
                         )
                       ],

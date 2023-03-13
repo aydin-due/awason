@@ -1,11 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:awason/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService extends ChangeNotifier {
-  final String baseUrl = 'https://fuzzy-stockings-boa.cyclic.app';
+  final String baseUrl = 'fuzzy-stockings-boa.cyclic.app';
+  final storage = const FlutterSecureStorage();
+  final String testId = '640cfe856782171c79344a10';
 
   Future<CarrierResponse> createCarrier(Carrier carrier) async {
     print(carrier.nombre);
@@ -41,14 +44,32 @@ class ApiService extends ChangeNotifier {
     }
   }
 
-  Future<CarrierResponse> getCarrier(String id) async {
-    final response = await http.get(
-      Uri.parse('$baseUrl/carrier/read/$id'),
-    );
+  Future<CarrierResponse> getCarrier() async {
+    //final id = await storage.read(key: 'user');
+    final url = Uri.https(baseUrl, '/carrier/read/$testId');
+    final response = await http.get(url);
     if (response.statusCode == 200) {
       return CarrierResponse.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to get carrier.');
+    }
+  }
+
+  Future<GenericResponse> updateStatus(bool status) async {
+    //final id = await storage.read(key: 'user');
+    print('en el api');
+    print(status);
+    final Map<String, bool> body = {
+      'isActive': status,
+    };
+    final url = Uri.https(baseUrl, '/carrier/updateStatus/$testId');
+    final response = await http.put(url, body: json.encode(body), headers: {
+      HttpHeaders.contentTypeHeader: 'application/json',
+    });
+    if (response.statusCode == 200) {
+      return GenericResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to create carrier.');
     }
   }
 }
