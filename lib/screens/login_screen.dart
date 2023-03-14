@@ -1,5 +1,4 @@
 import 'package:awason/models/models.dart';
-import 'package:awason/models/responses/carrier_response.dart';
 import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -76,14 +75,15 @@ class _LoginFormState extends State<LoginForm> {
     final CarriersResponse response =
         await apiService.login(emailController.text, passwordController.text);
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(response.message ?? ''),
-        ),
-      );
       if (response.status == Texts.success) {
         storage.write(key: 'user', value: response.data![0].sId);
         Navigator.pushReplacementNamed(context, Routes.home);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.message!),
+          ),
+        );
       }
     }
   }

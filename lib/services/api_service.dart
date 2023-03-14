@@ -36,7 +36,7 @@ class ApiService extends ChangeNotifier {
 
   Future<CarrierResponse> getCarrier() async {
     final id = await storage.read(key: 'user');
-    final url = Uri.https(baseUrl, '/carrier/read/$testId');
+    final url = Uri.https(baseUrl, '/carrier/read/$id');
     final response = await http.get(url);
     if (response.statusCode == 200) {
       return CarrierResponse.fromJson(jsonDecode(response.body));
@@ -69,7 +69,7 @@ class ApiService extends ChangeNotifier {
       'email': carrier.email,
       'num_contacto': carrier.numContacto
     };
-    final url = Uri.https(baseUrl, '/carrier/update/$testId');
+    final url = Uri.https(baseUrl, '/carrier/update/$id');
     final response = await http.put(url, body: json.encode(body), headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
     });
@@ -82,7 +82,7 @@ class ApiService extends ChangeNotifier {
 
   Future<GenericResponse> updateVehicle(Vehiculo vehiculo) async {
     final id = await storage.read(key: 'user');
-    final url = Uri.https(baseUrl, '/carrier/updateVehiculo/$testId');
+    final url = Uri.https(baseUrl, '/carrier/updateVehiculo/$id');
     final Map<String, dynamic> body = {
       'vehiculo': vehiculo.toJson(),
     };
@@ -98,7 +98,7 @@ class ApiService extends ChangeNotifier {
 
   Future<CarrierResponse> updatePrice(String price) async {
     final id = await storage.read(key: 'user');
-    final url = Uri.https(baseUrl, '/carrier/$testId/updatePrecioGarrafon');
+    final url = Uri.https(baseUrl, '/carrier/$id/updatePrecioGarrafon');
     final Map<String, dynamic> body = {
       'precioGarrafon': price,
     };
