@@ -2,6 +2,7 @@ import 'package:awason/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
+  static const String checkAuth = '/';
   static const String login = '/login';
   static const String register = '/register';
   static const String home = '/home';
@@ -12,6 +13,7 @@ class Routes {
   static const String editPrice = '/editPrice';
 
   static final routes = <Route>[
+    Route(route: checkAuth, screen: const CheckAuthScreen()),
     Route(route: login, screen: const LoginScreen()),
     Route(route: register, screen: const RegisterScreen()),
     Route(route: home, screen: const MainScreen()),

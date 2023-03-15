@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: Texts.title,
-        initialRoute: Routes.login,
+        initialRoute: Routes.checkAuth,
         routes: Routes.getAppRoutes(),
       ),
     );
