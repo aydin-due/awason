@@ -1,12 +1,16 @@
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class BlueCircularIconButton extends StatelessWidget {
-  const BlueCircularIconButton({
-    Key? key, required this.icon, required this.onPressed,
+class CircularIconButton extends StatelessWidget {
+  const CircularIconButton({
+    Key? key,
+    required this.icon,
+    required this.onPressed,
+    this.color = blue,
   }) : super(key: key);
   final IconData icon;
   final Function onPressed;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,7 @@ class BlueCircularIconButton extends StatelessWidget {
         icon: Container(
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
-              color: blue, borderRadius: BorderRadius.circular(20)),
+              color: color, borderRadius: BorderRadius.circular(20)),
           child: Icon(
             icon,
             color: Colors.white,

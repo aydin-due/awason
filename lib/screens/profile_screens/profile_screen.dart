@@ -72,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      BlueCircularIconButton(
+                                      CircularIconButton(
                                           icon: Icons.edit_outlined,
                                           onPressed: () => Navigator.pushNamed(
                                                   context, Routes.editProfile, arguments: carrier)
@@ -92,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           '${carrier.vehiculo!.marca} ${carrier.vehiculo!.modelo} ${carrier.vehiculo!.color} ${carrier.vehiculo!.matricula}',
                           overflow: TextOverflow.ellipsis,
                         ),
-                        trailing: BlueCircularIconButton(
+                        trailing: CircularIconButton(
                           icon: Icons.edit_outlined,
                           onPressed: () =>
                               Navigator.pushNamed(context, Routes.editVehicle, arguments: carrier.vehiculo)
@@ -117,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         subtitle: Text(
                           '${carrier.precioGarrafon}',
                         ),
-                        trailing: BlueCircularIconButton(
+                        trailing: CircularIconButton(
                           icon: Icons.edit_outlined,
                           onPressed: () =>
                               Navigator.pushNamed(context, Routes.editPrice, arguments: carrier.precioGarrafon)

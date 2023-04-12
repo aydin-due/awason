@@ -5,6 +5,9 @@ const blue = Color(0xFF160084);
 const gray = Color(0xFFE5E5E5);
 const darkGray = Color(0xFF595959);
 const yellow = Color(0xFFFFC107);
+const lightGray = Color(0xFFF5F5F5);
+const green = Color(0xFF4CAF50);
+const red = Color(0xFFE53935);
 
 // text styles
 const heading = TextStyle(
@@ -31,8 +34,13 @@ const blueLink = TextStyle(
 );
 
 const plainText = TextStyle(
-  fontSize: 16,
+  fontSize: 14,
   fontWeight: FontWeight.w400,
+);
+
+const boldText = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w700,
 );
 
 const grayText =
