@@ -63,4 +63,11 @@ class Texts {
   static const editarVehiculo = 'Editar vehículo';
   static const editarSector = 'Editar sector';
   static const editarPrecio = 'Editar precio';
+
+  // orders screen
+  static const pendientes = 'Pendientes';
+  static const enCurso = 'En curso';
+  static const direccion = 'Dirección';
+  static const garrafones = 'Garrafones';
+  static const estoyEnCamino = 'Estoy en camino';
 }
