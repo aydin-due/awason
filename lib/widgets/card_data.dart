@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class CardData extends StatelessWidget {
   const CardData({
-    super.key, required this.title, required this.value,
+    super.key,
+    required this.title,
+    required this.value,
   });
   final String title;
   final String value;

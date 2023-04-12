@@ -68,16 +68,15 @@ class OngoingOrders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView.builder(
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text('Pedido $index'),
-            subtitle: Text('Subtitulo $index'),
-            trailing: Text('Trailing $index'),
-          );
-        },
-      ),
-    );
+        child: ListView.builder(
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return const OngoingOrderCard(
+                name: 'Tomasito',
+                address: 'Buena Vista #1',
+                gallons: '2',
+                time: '11:00 pm - 12:00 pm',
+              );
+            }));
   }
 }

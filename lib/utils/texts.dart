@@ -70,4 +70,6 @@ class Texts {
   static const direccion = 'Dirección';
   static const garrafones = 'Garrafones';
   static const estoyEnCamino = 'Estoy en camino';
+  static const cancelarEntrega = 'Cancelar entrega';
+  static const confirmarEntrega = 'Terminar entrega';
 }

@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 
 class CardContainer extends StatelessWidget {
   const CardContainer({
-    super.key, required this.child,
+    super.key, required this.child, this.height = 0.15,
   });
   final Widget child;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.15,
+      height: MediaQuery.of(context).size.height * height,
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
