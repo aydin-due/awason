@@ -1,17 +1,45 @@
+import 'package:awason/models/models.dart';
+import 'package:awason/services/services.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
-class RequestsScreen extends StatelessWidget {
+class RequestsScreen extends StatefulWidget {
   const RequestsScreen({Key? key}) : super(key: key);
 
   @override
+  State<RequestsScreen> createState() => _RequestsScreenState();
+}
+
+class _RequestsScreenState extends State<RequestsScreen> {
+  final _apiService = OrderRequestService();
+
+  @override
   Widget build(BuildContext context) {
-    return const CardContainer(
-        child: RequestCard(
-      name: 'Tomasito',
-      address: 'Buena Vista #1',
-      gallons: '2',
-      time: '2:00 pm - 4:00 pm',
-    ));
+    return FutureBuilder(
+        future: _apiService.getOrderRequest(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final List<OrderRequest> requests = snapshot.data!.data!;
+            return ListView.builder(
+              itemCount: requests.length,
+              itemBuilder: (context, index) {
+                final OrderRequest request = requests[index];
+                final IdClient client = request.idClient!;
+                return CardContainer(
+                    child: RequestCard(
+                  name: '${client.nombre} ${client.apellidos}',
+                  address: '${client.direccion!.calle} ${client.direccion!.numero} ${client.direccion!.colonia}',
+                  gallons: request.cantGarrafones.toString(),
+                  time: '${client.horario!.horaInicial} - ${client.horario!.horaFinal} horas',
+                ));
+              },
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
   }
 }

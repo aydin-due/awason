@@ -1,5 +1,5 @@
 import 'package:awason/models/models.dart';
-import 'package:awason/services/api_service.dart';
+import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final storage = const FlutterSecureStorage();
-  final ApiService _apiService = ApiService();
+  final CarrierService _apiService = CarrierService();
   bool isActive = false;
 
   updateStatus(bool status) async {

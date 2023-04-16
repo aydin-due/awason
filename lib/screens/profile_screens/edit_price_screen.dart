@@ -16,7 +16,7 @@ class _EditPriceScreenState extends State<EditPriceScreen> {
   final TextEditingController priceController = TextEditingController();
 
   updatePrice() async {
-    final apiService = ApiService();
+    final apiService = CarrierService();
     final CarrierResponse response =
         await apiService.updatePrice(priceController.text);
     if (mounted) {

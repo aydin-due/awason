@@ -1,5 +1,5 @@
 import 'package:awason/models/models.dart';
-import 'package:awason/services/api_service.dart';
+import 'package:awason/services/carrier_service.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final ApiService _apiService = ApiService();
+  final CarrierService _apiService = CarrierService();
 
   @override
   Widget build(BuildContext context) {

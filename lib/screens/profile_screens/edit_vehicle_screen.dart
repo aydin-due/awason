@@ -20,7 +20,7 @@ class _EditVehicleScreenState extends State<EditVehicleScreen> {
   final TextEditingController placaController = TextEditingController();
 
   updateVehicle() async {
-    final apiService = ApiService();
+    final apiService = CarrierService();
     final vehicle = Vehiculo(
       marca: marcaController.text,
         modelo: modelController.text,

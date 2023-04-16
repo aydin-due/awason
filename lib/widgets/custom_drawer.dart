@@ -16,7 +16,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  final ApiService _apiService = ApiService();
+  final CarrierService _apiService = CarrierService();
 
   logout() async {
     const storage = FlutterSecureStorage();

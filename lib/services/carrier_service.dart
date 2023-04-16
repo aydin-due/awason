@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-class ApiService extends ChangeNotifier {
+class CarrierService extends ChangeNotifier {
   final String baseUrl = 'fuzzy-stockings-boa.cyclic.app';
   final storage = const FlutterSecureStorage();
   final String testId = '640eadfd61b2786edd462911';

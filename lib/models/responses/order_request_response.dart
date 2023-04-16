@@ -3,7 +3,7 @@ import 'package:awason/models/models.dart';
 class OrderRequestResponse {
   String? status;
   String? message;
-  List<Data>? data;
+  List<OrderRequest>? data;
 
   OrderRequestResponse({this.status, this.message, this.data});
 
@@ -11,9 +11,9 @@ class OrderRequestResponse {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <OrderRequest>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(OrderRequest.fromJson(v));
       });
     }
   }
@@ -29,7 +29,7 @@ class OrderRequestResponse {
   }
 }
 
-class Data {
+class OrderRequest {
   String? sId;
   IdClient? idClient;
   int? cantGarrafones;
@@ -42,7 +42,7 @@ class Data {
   dynamic fechaEntrega;
   int? iV;
 
-  Data(
+  OrderRequest(
       {this.sId,
       this.idClient,
       this.cantGarrafones,
@@ -55,7 +55,7 @@ class Data {
       this.fechaEntrega,
       this.iV});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  OrderRequest.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     idClient = json['id_client'] != null
         ? IdClient.fromJson(json['id_client'])

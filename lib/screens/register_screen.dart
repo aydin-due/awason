@@ -77,7 +77,7 @@ class _RegisterFormState extends State<RegisterForm> {
     GlobalKey<FormState>(),
   ];
   int currentStep = 0;
-  final ApiService _apiService = ApiService();
+  final CarrierService _apiService = CarrierService();
   final storage = const FlutterSecureStorage();
 
   createCarrier() async {
