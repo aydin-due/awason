@@ -9,11 +9,15 @@ class RequestCard extends StatelessWidget {
     required this.address,
     required this.time,
     required this.gallons,
+    required this.declineRequest,
+    required this.acceptRequest,
   });
   final String name;
   final String address;
   final String time;
   final String gallons;
+  final Function declineRequest;
+  final Function acceptRequest;
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +54,12 @@ class RequestCard extends StatelessWidget {
                 CircularIconButton(
                   icon: Icons.close,
                   color: red,
-                  onPressed: () {},
+                  onPressed: () => declineRequest(),
                 ),
                 CircularIconButton(
                   icon: Icons.check,
                   color: green,
-                  onPressed: () {},
+                  onPressed: () => acceptRequest(),
                 ),
               ],
             )

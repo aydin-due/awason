@@ -2,7 +2,6 @@ import 'package:awason/models/models.dart';
 import 'package:awason/services/services.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 class RequestsScreen extends StatefulWidget {
   const RequestsScreen({Key? key}) : super(key: key);
@@ -29,9 +28,22 @@ class _RequestsScreenState extends State<RequestsScreen> {
                 return CardContainer(
                     child: RequestCard(
                   name: '${client.nombre} ${client.apellidos}',
-                  address: '${client.direccion!.calle} ${client.direccion!.numero} ${client.direccion!.colonia}',
+                  address:
+                      '${client.direccion!.calle} ${client.direccion!.numero} ${client.direccion!.colonia}',
                   gallons: request.cantGarrafones.toString(),
-                  time: '${client.horario!.horaInicial} - ${client.horario!.horaFinal} horas',
+                  time:
+                      '${client.horario!.horaInicial} - ${client.horario!.horaFinal} horas',
+                  declineRequest: () async {
+                    print('si');
+                    await _apiService
+                        .declineRequest(request.sId!)
+                        .then((value) => setState(() {}));
+                  },
+                  acceptRequest: () async {
+                    _apiService
+                        .acceptRequest(order: request.sId!)
+                        .then((value) => setState(() {}));
+                  },
                 ));
               },
             );
