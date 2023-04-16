@@ -1,8 +1,5 @@
-import 'package:awason/utils/utils.dart';
-import 'package:awason/widgets/card_container.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({Key? key}) : super(key: key);
