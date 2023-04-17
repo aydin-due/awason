@@ -19,7 +19,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final TextEditingController phoneController = TextEditingController();
 
   updateDetails() async {
-    final apiService = ApiService();
+    final apiService = CarrierService();
     final carrier = Carrier(
         nombre: nameController.text,
         apellidos: surnameController.text,

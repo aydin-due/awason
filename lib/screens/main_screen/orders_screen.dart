@@ -1,5 +1,5 @@
 import 'package:awason/models/client.dart';
-import 'package:awason/services/api_service.dart';
+import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -69,7 +69,7 @@ class OngoingOrders extends StatefulWidget {
 }
 
 class _OngoingOrdersState extends State<OngoingOrders> {
-  final apiService = ApiService();
+  final apiService = OrderService();
 
   void refresh() => setState(() {});
 
@@ -97,15 +97,15 @@ class _OngoingOrdersState extends State<OngoingOrders> {
               itemCount: snapshot.data!.data!.length,
               itemBuilder: (ctx, index) {
                 final order = snapshot.data!.data![index];
-                final orderClient = Client.fromJson(order.clientId);
+                final orderClient = IdClient.fromJson(order.clientId);
 
                 final clientFullName =
-                    '${orderClient.name} ${orderClient.surname}';
+                    '${orderClient.nombre} ${orderClient.apellidos}';
                 final clientAddress =
-                    '${orderClient.address!.street} #${orderClient.address!.houseNumber}';
+                    '${orderClient.direccion!.calle} #${orderClient.direccion!.numero} ${orderClient.direccion!.colonia}';
                 final gallons = order.gallons.toString();
                 final clientSchedule =
-                    '${orderClient.schedule!.startingTime}:00 - ${orderClient.schedule!.endingTime}:00';
+                    '${orderClient.horario!.horaInicial} - ${orderClient.horario!.horaFinal} horas';
 
                 return OngoingOrderCard(
                   orderId: order.id!,

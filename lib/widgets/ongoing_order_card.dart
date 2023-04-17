@@ -1,4 +1,5 @@
-import 'package:awason/services/api_service.dart';
+import 'package:awason/models/models.dart';
+import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class _OngoingOrderCardState extends State<OngoingOrderCard> {
 
   void finishDelivery() async {
     try {
-      final apiService = ApiService();
+      final apiService = OrderService();
       await apiService.finishDelivery(widget.orderId);
 
       //TODO: Should push to end of delivery screen or whatever
@@ -97,7 +98,7 @@ class _OngoingOrderCardState extends State<OngoingOrderCard> {
 
       if (!dialogResult) return;
 
-      final apiService = ApiService();
+      final apiService = OrderService();
       await apiService.cancelDelivery(widget.orderId);
 
       await _showGenericDialog(
