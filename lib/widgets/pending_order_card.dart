@@ -18,28 +18,40 @@ class PendingOrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardContainer(
-        child: Row(children: [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CardData(title: 'Nombre: ', value: name),
-          CardData(title: 'Dirección: ', value: address),
-          CardData(title: 'Garrafones: ', value: gallons),
-        ],
-      ),
-      const Spacer(),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            time,
-            style: boldText,
-          ),
-          ElevatedButton(
-              onPressed: () {}, child: const Text(Texts.estoyEnCamino)),
-        ],
-      )
-    ]));
+      height: .20,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Row(children: [
+                Expanded(
+                  flex: 8,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CardData(title: 'Nombre: ', value: name),
+                      CardData(title: 'Dirección: ', value: address),
+                      CardData(title: 'Garrafones: ', value: gallons),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                time,
+                style: boldText,
+              ),
+            ],
+                )
+              ]),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  onPressed: () {}, child: const Text(Texts.estoyEnCamino)),
+          ],
+        ));
   }
 }

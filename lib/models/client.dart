@@ -9,7 +9,7 @@ class IdClient {
   String? email;
   String? contrasena;
   int? numContacto;
-  double? calificacion;
+  dynamic calificacion;
   int? iV;
 
   IdClient(

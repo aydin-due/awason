@@ -23,25 +23,26 @@ class RequestCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CardData(
-              title: 'Nombre: ',
-              value: name,
-            ),
-            CardData(
-              title: 'Dirección: ',
-              value: address,
-            ),
-            CardData(
-              title: 'Garrafones: ',
-              value: gallons,
-            ),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CardData(
+                title: 'Nombre: ',
+                value: name,
+              ),
+              CardData(
+                title: 'Dirección: ',
+                value: address,
+              ),
+              CardData(
+                title: 'Garrafones: ',
+                value: gallons,
+              ),
+            ],
+          ),
         ),
-        const Spacer(),
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

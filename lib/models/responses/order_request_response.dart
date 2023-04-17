@@ -33,9 +33,9 @@ class OrderRequest {
   String? sId;
   IdClient? idClient;
   int? cantGarrafones;
-  int? precio;
+  dynamic precio;
   int? cuotaServicio;
-  int? total;
+  dynamic total;
   String? ordenStatus;
   String? entregaStatus;
   String? fechaPedido;

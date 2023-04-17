@@ -13,14 +13,19 @@ class CardData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
           style: boldText,
         ),
-        Text(
-          value,
-          style: plainText,
+        Expanded(
+          child: Text(
+            value,
+            style: plainText,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+          ),
         ),
       ],
     );

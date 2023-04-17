@@ -1,74 +1,17 @@
-import 'package:awason/models/client.dart';
+import 'package:awason/models/models.dart';
 import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class OrdersScreen extends StatefulWidget {
-  const OrdersScreen({Key? key}) : super(key: key);
+class OngoingOrdersScreen extends StatefulWidget {
+  const OngoingOrdersScreen({super.key});
 
   @override
-  State<OrdersScreen> createState() => _OrdersScreenState();
+  State<OngoingOrdersScreen> createState() => _OngoingOrdersScreenState();
 }
 
-class _OrdersScreenState extends State<OrdersScreen> {
-  int groupValue = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CupertinoSlidingSegmentedControl(
-            groupValue: groupValue,
-            children: const {
-              0: Text('Pendientes'),
-              1: Text('En curso'),
-            },
-            onValueChanged: (value) {
-              setState(() {
-                groupValue = value!;
-              });
-            }),
-        const SizedBox(
-          height: 10,
-        ),
-        groupValue == 0 ? const PendingOrders() : const OngoingOrders(),
-      ],
-    );
-  }
-}
-
-class PendingOrders extends StatelessWidget {
-  const PendingOrders({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return const PendingOrderCard(
-            name: 'Tomasito',
-            address: 'Buena Vista #1',
-            gallons: '2',
-            time: '11:00 pm - 12:00 pm',
-          );
-        },
-      ),
-    );
-  }
-}
-
-class OngoingOrders extends StatefulWidget {
-  const OngoingOrders({super.key});
-
-  @override
-  State<OngoingOrders> createState() => _OngoingOrdersState();
-}
-
-class _OngoingOrdersState extends State<OngoingOrders> {
+class _OngoingOrdersScreenState extends State<OngoingOrdersScreen> {
   final apiService = OrderService();
 
   void refresh() => setState(() {});
@@ -96,8 +39,8 @@ class _OngoingOrdersState extends State<OngoingOrders> {
             child: ListView.builder(
               itemCount: snapshot.data!.data!.length,
               itemBuilder: (ctx, index) {
-                final order = snapshot.data!.data![index];
-                final orderClient = IdClient.fromJson(order.clientId);
+                final Order order = snapshot.data!.data![index];
+                final IdClient orderClient = IdClient.fromJson(order.clientId);
 
                 final clientFullName =
                     '${orderClient.nombre} ${orderClient.apellidos}';
@@ -108,7 +51,7 @@ class _OngoingOrdersState extends State<OngoingOrders> {
                     '${orderClient.horario!.horaInicial} - ${orderClient.horario!.horaFinal} horas';
 
                 return OngoingOrderCard(
-                  orderId: order.id!,
+                  orderId: order.id ?? '1',
                   name: clientFullName,
                   address: clientAddress,
                   gallons: gallons,

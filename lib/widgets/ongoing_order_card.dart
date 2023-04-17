@@ -1,4 +1,3 @@
-import 'package:awason/models/models.dart';
 import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
@@ -118,7 +117,7 @@ class _OngoingOrderCardState extends State<OngoingOrderCard> {
   @override
   Widget build(BuildContext context) {
     return CardContainer(
-      height: 0.18,
+      height:  .19,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -126,13 +125,15 @@ class _OngoingOrderCardState extends State<OngoingOrderCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CardData(title: 'Nombre: ', value: widget.name),
-                  CardData(title: 'Dirección: ', value: widget.address),
-                  CardData(title: 'Garrafones: ', value: widget.gallons),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CardData(title: 'Nombre: ', value: widget.name),
+                    CardData(title: 'Dirección: ', value: widget.address),
+                    CardData(title: 'Garrafones: ', value: widget.gallons),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 24.0),
