@@ -11,7 +11,7 @@ class RequestsScreen extends StatefulWidget {
 }
 
 class _RequestsScreenState extends State<RequestsScreen> {
-  final _apiService = OrderRequestService();
+  final _apiService = OrderService();
 
   @override
   Widget build(BuildContext context) {
