@@ -43,8 +43,11 @@ const boldText = TextStyle(
   fontWeight: FontWeight.w700,
 );
 
-const grayText =
-    TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: darkGray);
+const grayText = TextStyle(
+  fontSize: 16, 
+  fontWeight: FontWeight.w400, 
+  color: darkGray
+);
 
 const appbarTitle = TextStyle(
   fontSize: 20,
