@@ -9,26 +9,28 @@ class PendingOrderCard extends StatelessWidget {
     required this.address,
     required this.time,
     required this.gallons,
+    required this.startDelivery,
   });
   final String name;
   final String address;
   final String time;
   final String gallons;
+  final Function startDelivery;
 
   @override
   Widget build(BuildContext context) {
     return CardContainer(
-      height: .20,
+        height: .20,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Row(children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Expanded(
-                  flex: 8,
+                  flex: 7,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CardData(title: 'Nombre: ', value: name),
                       CardData(title: 'Dirección: ', value: address),
@@ -37,20 +39,17 @@ class PendingOrderCard extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                time,
-                style: boldText,
-              ),
-            ],
-                )
-              ]),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                  onPressed: () {}, child: const Text(Texts.estoyEnCamino)),
+                Text(
+                  time,
+                  style: boldText,
+                ),
+              ],
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                onPressed: () => startDelivery(),
+                child: const Text(Texts.estoyEnCamino)),
           ],
         ));
   }

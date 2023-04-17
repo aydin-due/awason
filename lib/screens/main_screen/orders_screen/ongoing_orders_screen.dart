@@ -35,6 +35,11 @@ class _OngoingOrdersScreenState extends State<OngoingOrdersScreen> {
 
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
+              if (snapshot.data!.status == "FAILED") {
+              return const Center(
+                child: Text('No se encontraron pedidos'),
+              );
+            }
           return Expanded(
             child: ListView.builder(
               itemCount: snapshot.data!.data!.length,

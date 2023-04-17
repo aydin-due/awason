@@ -11,7 +11,7 @@ class OrderService extends ChangeNotifier {
   final String baseUrl = 'fuzzy-stockings-boa.cyclic.app';
 
   Future<OrderRequestResponse> getOrderRequest() async {
-    final url = Uri.https(baseUrl, '/order/pending');
+    final url = Uri.https(baseUrl, '/order/requests');
     final response = await http.get(url);
     if (response.statusCode == 200) {
       return OrderRequestResponse.fromJson(jsonDecode(response.body));
@@ -46,7 +46,7 @@ class OrderService extends ChangeNotifier {
     }
   }
 
-    Future<OrdersResponse> getOngoingOrders() async {
+  Future<OrdersResponse> getOngoingOrders() async {
     final id = await storage.read(key: 'user');
     final url = Uri.https(baseUrl, '/order/ongoing/$id');
 
@@ -60,13 +60,13 @@ class OrderService extends ChangeNotifier {
     return decodedRes;
   }
 
-  Future<OrderResponse> finishDelivery(String orderId) async {
+  Future<GenericResponse> finishDelivery(String orderId) async {
     final url = Uri.https(baseUrl, '/order/$orderId/finish-delivery');
 
     final response = await http.put(url, headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
     });
-    final decodedRes = OrderResponse.fromJson(jsonDecode(response.body));
+    final decodedRes = GenericResponse.fromJson(jsonDecode(response.body));
 
     if (decodedRes.status == "FAILED") {
       throw Exception(decodedRes.message);
@@ -75,18 +75,44 @@ class OrderService extends ChangeNotifier {
     return decodedRes;
   }
 
-  Future<OrderResponse> cancelDelivery(String orderId) async {
+  Future<GenericResponse> cancelDelivery(String orderId) async {
     final url = Uri.https(baseUrl, '/order/$orderId/cancel-delivery');
 
     final response = await http.put(url, headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
     });
-    final decodedRes = OrderResponse.fromJson(jsonDecode(response.body));
+    final decodedRes = GenericResponse.fromJson(jsonDecode(response.body));
 
     if (decodedRes.status == "FAILED") {
       throw Exception(decodedRes.message);
     }
 
     return decodedRes;
+  }
+
+  Future<OrdersResponse> getPendingOrders() async {
+    final url = Uri.https(baseUrl, '/order/pending');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      return OrdersResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to get order request.');
+    }
+  }
+
+  Future<GenericResponse> startDelivery(String order) async {
+    final id = await storage.read(key: 'user');
+    final Map<String, dynamic> body = {
+      'carrier': id,
+    };
+    final url = Uri.https(baseUrl, '/order/$order/start-delivery');
+    final response = await http.put(url, body: json.encode(body), headers: {
+      'Content-Type': 'application/json',
+    });
+    if (response.statusCode == 200) {
+      return GenericResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to accept order request.');
+    }
   }
 }

@@ -19,6 +19,11 @@ class _RequestsScreenState extends State<RequestsScreen> {
         future: _apiService.getOrderRequest(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            if (snapshot.data!.status == "FAILED") {
+              return const Center(
+                child: Text('No hay solicitudes'),
+              );
+            }
             final List<OrderRequest> requests = snapshot.data!.data!;
             return ListView.builder(
               itemCount: requests.length,
@@ -34,7 +39,6 @@ class _RequestsScreenState extends State<RequestsScreen> {
                   time:
                       '${client.horario!.horaInicial} - ${client.horario!.horaFinal} horas',
                   declineRequest: () async {
-                    print('si');
                     await _apiService
                         .declineRequest(request.sId!)
                         .then((value) => setState(() {}));
