@@ -12,34 +12,32 @@ class OngoingOrdersScreen extends StatefulWidget {
 }
 
 class _OngoingOrdersScreenState extends State<OngoingOrdersScreen> {
-  final apiService = OrderService();
+  final _apiService = OrderService();
 
   void refresh() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: apiService.getOngoingOrders(),
+      future: _apiService.getOngoingOrders(),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasError) {
-          return Expanded(
-            child: Center(
-              child: Text(
-                snapshot.error.toString().split(": ")[1],
-                style: blueLink,
-              ),
+          return Center(
+            child: Text(
+              snapshot.error.toString().split(": ")[1],
+              style: blueLink,
             ),
           );
         }
 
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
-              if (snapshot.data!.status == "FAILED") {
-              return const Center(
-                child: Text('No se encontraron pedidos'),
-              );
-            }
+          if (snapshot.data!.status == "FAILED") {
+            return const Center(
+              child: Text('No se encontraron pedidos'),
+            );
+          }
           return Expanded(
             child: ListView.builder(
               itemCount: snapshot.data!.data!.length,
@@ -56,12 +54,30 @@ class _OngoingOrdersScreenState extends State<OngoingOrdersScreen> {
                     '${orderClient.horario!.horaInicial} - ${orderClient.horario!.horaFinal} horas';
 
                 return OngoingOrderCard(
-                  orderId: order.id ?? '1',
                   name: clientFullName,
                   address: clientAddress,
                   gallons: gallons,
                   time: clientSchedule,
-                  refresh: refresh,
+                  finishDelivery: () async {
+                    _apiService.finishDelivery(order.id!).then(
+                      (value) {
+                        if (value.status == "SUCCESS") {
+                          final double subtotal = order.price! * order.gallons!;
+                          _showFinishedDeliveryModal(context, subtotal)
+                              .then((value) => refresh());
+                        }
+                      },
+                    );
+                  },
+                  cancelDelivery: () async {
+                    _apiService.cancelDelivery(order.id!).then(
+                      (value) {
+                        if (value.status == "SUCCESS") {
+                          refresh();
+                        }
+                      },
+                    );
+                  },
                 );
               },
             ),
@@ -75,5 +91,34 @@ class _OngoingOrdersScreenState extends State<OngoingOrdersScreen> {
         );
       },
     );
+  }
+
+  Future<dynamic> _showFinishedDeliveryModal(
+      BuildContext context, double subtotal) {
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+        isScrollControlled: true,
+        context: context,
+        builder: (ctx) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Has ganado',
+                      ),
+                      Text(
+                        '\$$subtotal',
+                        style: appbarTitle,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ));
   }
 }

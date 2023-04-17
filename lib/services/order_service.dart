@@ -53,7 +53,7 @@ class OrderService extends ChangeNotifier {
     final response = await http.get(url);
     final decodedRes = OrdersResponse.fromJson(jsonDecode(response.body));
 
-    if (decodedRes.status == "FAILED") {
+    if (response.statusCode != 200 ) {
       throw Exception(decodedRes.message);
     }
 
@@ -68,7 +68,7 @@ class OrderService extends ChangeNotifier {
     });
     final decodedRes = GenericResponse.fromJson(jsonDecode(response.body));
 
-    if (decodedRes.status == "FAILED") {
+    if (response.statusCode != 200 ) {
       throw Exception(decodedRes.message);
     }
 
@@ -83,7 +83,7 @@ class OrderService extends ChangeNotifier {
     });
     final decodedRes = GenericResponse.fromJson(jsonDecode(response.body));
 
-    if (decodedRes.status == "FAILED") {
+    if (response.statusCode != 200 ) {
       throw Exception(decodedRes.message);
     }
 
