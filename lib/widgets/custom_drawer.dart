@@ -65,6 +65,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           onTap: () => Navigator.pushNamed(
                                   context, Routes.orderHistory)
                         ),
+                        ListTile(
+                          leading: const Icon(Icons.account_balance_wallet),
+                          title: const Text(Texts.ganancias),
+                          onTap: () =>
+                              Navigator.pushNamed(context, Routes.balance),
+                        )
                       ],
                     ),
                   ),

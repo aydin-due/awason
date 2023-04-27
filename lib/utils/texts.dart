@@ -73,6 +73,12 @@ class Texts {
   static const cancelarEntrega = 'Cancelar entrega';
   static const confirmarEntrega = 'Terminar entrega';
 
-  // order history screen
-  static const historialPedidos = 'Historial de pedidos';
+  // balance screen
+  static const ganancias = 'Ganancias';
+  static const gananciasTotales = 'Ganancias totales';
+  static const retirar = 'Retirar';
+  static const verDetalles = 'Ver detalles';
+  static const total = 'Total';
+  static const servicio = 'Servicio';
+  static const ultimasTransacciones = 'Últimas transacciones';
 }

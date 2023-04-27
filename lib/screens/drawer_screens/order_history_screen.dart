@@ -8,7 +8,7 @@ class OrderHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(title: Texts.historialPedidos),
+      appBar: CustomAppBar(title: Texts.historial),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: OrderHistoryCard(),

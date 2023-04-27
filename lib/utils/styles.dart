@@ -16,6 +16,12 @@ const heading = TextStyle(
   color: blue,
 );
 
+const lightHeading = TextStyle(
+  fontSize: 36,
+  fontWeight: FontWeight.w700,
+  color: Colors.white,
+);
+
 const subtitle = TextStyle(
   fontSize: 26,
   fontWeight: FontWeight.w400,
@@ -25,6 +31,11 @@ const blueButtonText = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w700,
   color: Colors.white,
+);
+
+const boldDateText = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.w700,
 );
 
 const blueLink = TextStyle(
@@ -51,6 +62,12 @@ const grayText = TextStyle(
 
 const appbarTitle = TextStyle(
   fontSize: 20,
+  fontWeight: FontWeight.w700,
+  color: Colors.black,
+);
+
+const listTileTitle = TextStyle(
+  fontSize: 16,
   fontWeight: FontWeight.w700,
   color: Colors.black,
 );
