@@ -1,3 +1,4 @@
+export 'package:awason/widgets/order_history_card.dart';
 export 'package:awason/widgets/ongoing_order_card.dart';
 export 'package:awason/widgets/pending_order_card.dart';
 export 'package:awason/widgets/request_card.dart';
