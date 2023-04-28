@@ -62,14 +62,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         ListTile(
                           leading: const Icon(Icons.watch_later_rounded),
                           title: const Text(Texts.historial),
-                          onTap: () => Navigator.pushNamed(
-                                  context, Routes.orderHistory)
+                          onTap: () => Navigator.pushNamed(context, Routes.orderHistory)
                         ),
                         ListTile(
                           leading: const Icon(Icons.account_balance_wallet),
                           title: const Text(Texts.ganancias),
-                          onTap: () =>
-                              Navigator.pushNamed(context, Routes.balance),
+                          onTap: () => Navigator.pushNamed(context, Routes.balance),
                         )
                       ],
                     ),

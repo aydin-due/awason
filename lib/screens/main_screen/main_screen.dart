@@ -26,7 +26,7 @@ class _MainScreenState extends State<MainScreen> {
         break;
       case 1:
         content = const OrdersScreen();
-        title = Texts.pedidos;
+        title = Texts.entregas;
         break;
       case 2:
         content = const RequestsScreen();

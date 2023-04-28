@@ -13,6 +13,7 @@ class Routes {
   static const String editPrice = '/editPrice';
   static const String orderHistory = '/orderHistory';
   static const String balance = '/balance';
+  static const String order = '/order';
 
   static final routes = <Route>[
     Route(route: checkAuth, screen: const CheckAuthScreen()),
@@ -26,6 +27,7 @@ class Routes {
     Route(route: editPrice, screen: const EditPriceScreen()),
     Route(route: orderHistory, screen: const OrderHistoryScreen()),
     Route(route: balance, screen: const BalanceScreen()),
+    Route(route: order, screen: const OrderScreen()),
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {

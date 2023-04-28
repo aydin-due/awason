@@ -44,6 +44,7 @@ class Texts {
   static const inicio = 'Inicio';
   static const pedidos = 'Pedidos';
   static const solicitudes = 'Solicitudes';
+  static const entregas = 'Entregas';
 
   // home screen
   static const activo = 'Actualmente estás activo';
@@ -53,7 +54,7 @@ class Texts {
   // drawer
   static const verPerfil = 'Ver perfil';
   static const cerrarSesion = 'Cerrar sesión';
-  static const historial = 'Historial de pedidos';
+  static const historial = 'Historial de entregas';
 
   // profile screen
   static const miPerfil = 'Mi perfil';
@@ -73,6 +74,9 @@ class Texts {
   static const estoyEnCamino = 'Estoy en camino';
   static const cancelarEntrega = 'Cancelar entrega';
   static const confirmarEntrega = 'Terminar entrega';
+
+  // order screen
+  static const entrega = 'Mi entrega';
 
   // balance screen
   static const ganancias = 'Ganancias';

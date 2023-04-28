@@ -37,7 +37,7 @@ class StatsSlider extends StatelessWidget {
               shape: cardDecor.copyWith(
                 borderRadius: BorderRadius.circular(20),
               ),
-              elevation: 0,
+              elevation: 1,
               child: Column(
                 children: [
                   Expanded(

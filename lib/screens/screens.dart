@@ -1,3 +1,4 @@
+export 'package:awason/screens/order_screen.dart';
 export 'package:awason/screens/drawer_screens/balance_screen.dart';
 export 'package:awason/screens/drawer_screens/order_history_screen.dart';
 export 'package:awason/screens/main_screen/orders_screen/ongoing_orders_screen.dart';

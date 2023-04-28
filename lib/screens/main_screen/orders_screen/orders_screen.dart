@@ -1,4 +1,5 @@
 import 'package:awason/screens/screens.dart';
+import 'package:awason/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 
 class OrdersScreen extends StatefulWidget {
@@ -17,8 +18,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
         CupertinoSlidingSegmentedControl(
             groupValue: groupValue,
             children: const {
-              0: Text('Pendientes'),
-              1: Text('En curso'),
+              0: Text(Texts.pendientes),
+              1: Text(Texts.enCurso),
             },
             onValueChanged: (value) {
               setState(() {
