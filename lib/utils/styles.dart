@@ -22,6 +22,12 @@ const lightHeading = TextStyle(
   color: Colors.white,
 );
 
+const sliderTitle = TextStyle(
+  fontSize: 30,
+  fontWeight: FontWeight.w700,
+  color: Colors.white,
+);
+
 const subtitle = TextStyle(
   fontSize: 26,
   fontWeight: FontWeight.w400,

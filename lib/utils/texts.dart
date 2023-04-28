@@ -48,6 +48,7 @@ class Texts {
   // home screen
   static const activo = 'Actualmente estás activo';
   static const inactivo = 'Actualmente estás inactivo';
+  static const estadisticas = 'Tus estadísticas';
 
   // drawer
   static const verPerfil = 'Ver perfil';

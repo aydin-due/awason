@@ -1,6 +1,7 @@
 import 'package:awason/models/models.dart';
 import 'package:awason/services/services.dart';
 import 'package:awason/utils/utils.dart';
+import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -57,7 +58,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     ),
-                  ))
+                  )),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    Texts.estadisticas,
+                    style: appbarTitle,
+                  ),
+                ),
+              ),
+              const Expanded(
+                child: StatsSlider(),
+              )
             ],
           );
         });
