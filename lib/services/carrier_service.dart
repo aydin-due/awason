@@ -171,4 +171,18 @@ class CarrierService extends ChangeNotifier {
 
     return decodedRes;
   }
+
+  Future<HomeScreenResponse> getHomeData() async {
+    final id = await storage.read(key: 'user');
+    final url = Uri.https(baseUrl, '/carrier/home/$id');
+
+    final response = await http.get(url);
+    final decodedRes = HomeScreenResponse.fromJson(jsonDecode(response.body));
+
+    if (decodedRes.status == "FAILED") {
+      throw Exception(decodedRes.message);
+    }
+
+    return decodedRes;
+  }
 }
