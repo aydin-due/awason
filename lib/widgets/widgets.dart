@@ -1,3 +1,4 @@
+export 'package:awason/widgets/row_data.dart';
 export 'package:awason/widgets/stats_slider.dart';
 export 'package:awason/widgets/balance_history.dart';
 export 'package:awason/widgets/balance_details.dart';

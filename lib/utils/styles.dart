@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // colors
 const blue = Color(0xFF160084);
+const lightBlue = Color(0xFFE6E6FF);
 const gray = Color(0xFFE5E5E5);
 const darkGray = Color(0xFF595959);
 const yellow = Color(0xFFFFC107);
@@ -62,6 +63,12 @@ const boldText = TextStyle(
 
 const grayText = TextStyle(
   fontSize: 16, 
+  fontWeight: FontWeight.w400, 
+  color: darkGray
+);
+
+const smallGrayText = TextStyle(
+  fontSize: 14, 
   fontWeight: FontWeight.w400, 
   color: darkGray
 );

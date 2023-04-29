@@ -29,7 +29,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
               itemCount: requests.length,
               itemBuilder: (context, index) {
                 final OrderRequest request = requests[index];
-                final IdClient client = request.idClient!;
+                final Client client = request.idClient!;
                 return CardContainer(
                     child: RequestCard(
                   name: '${client.nombre} ${client.apellidos}',

@@ -77,6 +77,13 @@ class Texts {
 
   // order screen
   static const entrega = 'Mi entrega';
+  static const resumen = 'Resumen';
+  static const fecha = 'Fecha de entrega';
+  static const subtotal = 'Subtotal';
+  static const detalles = 'Detalles';
+  static const entregado = 'Entregado';
+  static const pendiente = 'Pendiente';
+  static const review = 'Tu reseña';
 
   // balance screen
   static const ganancias = 'Ganancias';

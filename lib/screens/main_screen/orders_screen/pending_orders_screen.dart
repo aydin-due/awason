@@ -31,7 +31,7 @@ class _PendingOrdersScreenState extends State<PendingOrdersScreen> {
                 itemCount: requests.length,
                 itemBuilder: (context, index) {
                   final Order order = requests[index];
-                  final IdClient client = IdClient.fromJson(order.clientId);
+                  final Client client = Client.fromJson(order.clientId);
                   return PendingOrderCard(
                     name: '${client.nombre} ${client.apellidos}',
                     address:

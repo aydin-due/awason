@@ -35,6 +35,7 @@ dependencies:
   flutter_native_splash: ^2.2.18
   flutter_secure_storage: ^8.0.0
   http: ^0.13.5
+  intl: ^0.18.1
   provider: ^6.0.5
 
 dev_dependencies:

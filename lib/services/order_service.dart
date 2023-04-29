@@ -53,7 +53,7 @@ class OrderService extends ChangeNotifier {
     final response = await http.get(url);
     final decodedRes = OrdersResponse.fromJson(jsonDecode(response.body));
 
-    if (response.statusCode != 200 ) {
+    if (response.statusCode != 200) {
       throw Exception(decodedRes.message);
     }
 
@@ -68,7 +68,7 @@ class OrderService extends ChangeNotifier {
     });
     final decodedRes = GenericResponse.fromJson(jsonDecode(response.body));
 
-    if (response.statusCode != 200 ) {
+    if (response.statusCode != 200) {
       throw Exception(decodedRes.message);
     }
 
@@ -83,7 +83,7 @@ class OrderService extends ChangeNotifier {
     });
     final decodedRes = GenericResponse.fromJson(jsonDecode(response.body));
 
-    if (response.statusCode != 200 ) {
+    if (response.statusCode != 200) {
       throw Exception(decodedRes.message);
     }
 
@@ -114,5 +114,16 @@ class OrderService extends ChangeNotifier {
     } else {
       throw Exception('Failed to accept order request.');
     }
+  }
+
+  Future<OrderResponse> getDeliveryHistory(String order) async {
+    final url = Uri.https(baseUrl, '/order/read/$order');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      return OrderResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to get order request.');
+    }
+
   }
 }

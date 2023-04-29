@@ -1,6 +1,6 @@
 import 'package:awason/models/models.dart';
 
-class IdClient {
+class Client {
   Direccion? direccion;
   Horario? horario;
   String? sId;
@@ -11,8 +11,9 @@ class IdClient {
   int? numContacto;
   dynamic calificacion;
   int? iV;
+  List<Review>? reviews;
 
-  IdClient(
+  Client(
       {this.direccion,
       this.horario,
       this.sId,
@@ -22,9 +23,10 @@ class IdClient {
       this.contrasena,
       this.numContacto,
       this.calificacion,
+      this.reviews,
       this.iV});
 
-  IdClient.fromJson(Map<String, dynamic> json) {
+  Client.fromJson(Map<String, dynamic> json) {
     direccion = json['direccion'] != null
         ? Direccion.fromJson(json['direccion'])
         : null;
@@ -38,6 +40,12 @@ class IdClient {
     numContacto = json['num_contacto'];
     calificacion = json['calificacion'];
     iV = json['__v'];
+    if (json['reseña'] != null) {
+      reviews = <Review>[];
+      json['reseña'].forEach((v) {
+        reviews!.add(new Review.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -56,6 +64,9 @@ class IdClient {
     data['num_contacto'] = numContacto;
     data['calificacion'] = calificacion;
     data['__v'] = iV;
+    if (this.reviews != null) {
+      data['reseña'] = this.reviews!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

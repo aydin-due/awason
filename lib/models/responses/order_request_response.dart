@@ -31,7 +31,7 @@ class OrderRequestResponse {
 
 class OrderRequest {
   String? sId;
-  IdClient? idClient;
+  Client? idClient;
   int? cantGarrafones;
   dynamic precio;
   int? cuotaServicio;
@@ -58,7 +58,7 @@ class OrderRequest {
   OrderRequest.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     idClient = json['id_client'] != null
-        ? IdClient.fromJson(json['id_client'])
+        ? Client.fromJson(json['id_client'])
         : null;
     cantGarrafones = json['cant_garrafones'];
     precio = json['precio'];

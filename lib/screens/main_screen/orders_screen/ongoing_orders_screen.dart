@@ -43,7 +43,7 @@ class _OngoingOrdersScreenState extends State<OngoingOrdersScreen> {
               itemCount: snapshot.data!.data!.length,
               itemBuilder: (ctx, index) {
                 final Order order = snapshot.data!.data![index];
-                final IdClient orderClient = IdClient.fromJson(order.clientId);
+                final Client orderClient = Client.fromJson(order.clientId);
 
                 final clientFullName =
                     '${orderClient.nombre} ${orderClient.apellidos}';

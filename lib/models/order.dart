@@ -10,6 +10,8 @@ class Order {
   String? deliveryStatus;
   DateTime? orderDate;
   DateTime? deliveryDate;
+  bool? reviewCarrier;
+  bool? reviewClient;
 
   Order({
     this.id,
@@ -23,6 +25,8 @@ class Order {
     this.deliveryStatus,
     this.orderDate,
     this.deliveryDate,
+    this.reviewCarrier,
+    this.reviewClient,
   });
 
   Order.fromJson(Map<String, dynamic> json) {
@@ -37,6 +41,8 @@ class Order {
     deliveryStatus = json["entrega_status"];
     orderDate = DateTime.tryParse(json["fecha_pedido"]);
     deliveryDate = DateTime.tryParse(json["fecha_entrega"] ?? "");
+    reviewCarrier = json['reseñaCarrier'];
+    reviewClient = json['reseñaCliente'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,7 +57,8 @@ class Order {
     data["entrega_status"] = deliveryStatus;
     data["fecha_pedido"] = orderDate;
     data["fecha_entrega"] = deliveryDate;
-
+    data['reseñaCarrier'] = reviewCarrier;
+    data['reseñaCliente'] = reviewClient;
     return data;
   }
 }
