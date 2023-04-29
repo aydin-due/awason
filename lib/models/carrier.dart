@@ -13,6 +13,7 @@ class Carrier {
   int? numContacto;
   dynamic precioGarrafon;
   dynamic calificacion;
+  List<Review>? reviews;
 
   Carrier(
       {this.vehiculo,
@@ -26,6 +27,7 @@ class Carrier {
       this.nombre,
       this.numContacto,
       this.precioGarrafon,
+      this.reviews,
       this.calificacion});
 
   Carrier.fromJson(Map<String, dynamic> json) {
@@ -43,6 +45,12 @@ class Carrier {
     numContacto = json['num_contacto'];
     precioGarrafon = json['precioGarrafon'];
     calificacion = json['calificacion'];
+     if (json['reseña'] != null) {
+      reviews = <Review>[];
+      json['reseña'].forEach((v) {
+        reviews!.add(Review.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -61,6 +69,9 @@ class Carrier {
     data['num_contacto'] = numContacto;
     data['precioGarrafon'] = precioGarrafon;
     data['calificacion'] = calificacion;
+    if (reviews != null) {
+      data['reseña'] = reviews!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

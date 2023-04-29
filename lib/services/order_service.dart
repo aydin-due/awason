@@ -116,7 +116,7 @@ class OrderService extends ChangeNotifier {
     }
   }
 
-  Future<OrderResponse> getDeliveryHistory(String order) async {
+  Future<OrderResponse> getOrder(String order) async {
     final url = Uri.https(baseUrl, '/order/read/$order');
     final response = await http.get(url);
     if (response.statusCode == 200) {
@@ -125,5 +125,16 @@ class OrderService extends ChangeNotifier {
       throw Exception('Failed to get order request.');
     }
 
+  }
+
+  Future<OrdersResponse> getDeliveryHistory() async {
+    final id = await storage.read(key: 'user');
+    final url = Uri.https(baseUrl, '/order/read/carrier/history/$id');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      return OrdersResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to get order request.');
+    }
   }
 }

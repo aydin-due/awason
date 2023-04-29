@@ -43,7 +43,7 @@ class Client {
     if (json['reseña'] != null) {
       reviews = <Review>[];
       json['reseña'].forEach((v) {
-        reviews!.add(new Review.fromJson(v));
+        reviews!.add(Review.fromJson(v));
       });
     }
   }
@@ -64,8 +64,8 @@ class Client {
     data['num_contacto'] = numContacto;
     data['calificacion'] = calificacion;
     data['__v'] = iV;
-    if (this.reviews != null) {
-      data['reseña'] = this.reviews!.map((v) => v.toJson()).toList();
+    if (reviews != null) {
+      data['reseña'] = reviews!.map((v) => v.toJson()).toList();
     }
     return data;
   }

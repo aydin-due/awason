@@ -16,7 +16,7 @@ class OrderScreen extends StatelessWidget {
         title: Texts.entrega,
       ),
       body: FutureBuilder(
-          future: OrderService().getDeliveryHistory(order),
+          future: OrderService().getOrder(order),
           builder:
               (BuildContext context, AsyncSnapshot<OrderResponse> snapshot) {
             if (snapshot.hasData) {
@@ -115,7 +115,6 @@ class OrderScreen extends StatelessWidget {
   }
 
   CardContainer _detailsData(Order order) {
-    final subtotal = order.price! * order.gallons!;
     final Client client = Client.fromJson(order.clientId);
     final String addressL1 = '${client.direccion!.calle} ${client.direccion!.numero} ${client.direccion!.colonia}';
     final String addressL2 = '${client.direccion!.ciudad} ${client.direccion!.codigoPostal}';
