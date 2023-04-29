@@ -1,3 +1,4 @@
+export 'package:awason/models/balance.dart';
 export 'package:awason/models/responses/home_screen_response.dart';
 export 'package:awason/models/review.dart';
 export 'package:awason/models/responses/generic_response.dart';

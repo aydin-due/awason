@@ -4,7 +4,7 @@ class Carrier {
   Vehiculo? vehiculo;
   String? sId;
   bool? isActive;
-  dynamic balance;
+  Balance? balance;
   String? contrasena;
   int? iV;
   String? apellidos;
@@ -36,7 +36,7 @@ class Carrier {
         : null;
     sId = json['_id'];
     isActive = json['isActive'];
-    balance = json['balance'];
+     balance =json['balance'] != null ? Balance.fromJson(json['balance']) : null;
     contrasena = json['contrasena'];
     iV = json['__v'];
     apellidos = json['apellidos'];
@@ -60,7 +60,9 @@ class Carrier {
     }
     data['_id'] = sId;
     data['isActive'] = isActive;
-    data['balance'] = balance;
+    if (balance != null) {
+      data['balance'] = balance!.toJson();
+    }
     data['contrasena'] = contrasena;
     data['__v'] = iV;
     data['apellidos'] = apellidos;

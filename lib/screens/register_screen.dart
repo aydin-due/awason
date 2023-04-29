@@ -87,7 +87,6 @@ class _RegisterFormState extends State<RegisterForm> {
         email: emailController.text,
         numContacto: int.parse(phoneController.text),
         contrasena: passwordController.text,
-        balance: 0,
         calificacion: 5,
         precioGarrafon: int.parse(priceController.text),
         vehiculo: Vehiculo(
