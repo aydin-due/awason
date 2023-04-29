@@ -185,4 +185,19 @@ class CarrierService extends ChangeNotifier {
 
     return decodedRes;
   }
+
+  Future<CarrierResponse> getBalance() async {
+    final id = await storage.read(key: 'user');
+    print(id);
+    final url = Uri.https(baseUrl, '/carrier/balance/$id');
+
+    final response = await http.get(url);
+    final decodedRes = CarrierResponse.fromJson(jsonDecode(response.body));
+
+    if (decodedRes.status == "FAILED") {
+      throw Exception(decodedRes.message);
+    }
+
+    return decodedRes;
+  }
 }

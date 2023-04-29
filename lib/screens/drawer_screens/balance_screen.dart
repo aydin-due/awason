@@ -1,3 +1,6 @@
+import 'package:awason/models/models.dart';
+import 'package:awason/models/responses/carrier_response.dart';
+import 'package:awason/services/carrier_service.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -7,24 +10,34 @@ class BalanceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: const CustomAppBar(title: Texts.ganancias),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: const [
-            BalanceCard(
-              balance: '\$0.00',
-            ),
-            BalanceDetails(
-              total: '\$0.00',
-              servicio: '\$0.00',
-              ganacias: '\$0.00',
-            ),
-            BalanceHistory(day: '22', month: 'Abr', name: 'Tomasito Wapo', quantity: '2', total: '\$0.00',)
-          ],
-        ),
-      ),
+      body: FutureBuilder(
+          future: CarrierService().getBalance(),
+          builder:
+              (BuildContext context, AsyncSnapshot<CarrierResponse> snapshot) {
+            if (!snapshot.hasData) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            final Balance balance = snapshot.data!.data!.balance!;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                children: [
+                  BalanceCard(
+                    balance: '\$${balance.ganancias}',
+                  ),
+                  BalanceDetails(
+                    total: '\$${balance.total}',
+                    servicio: '\$${balance.servicio}',
+                    ganacias: '\$${balance.ganancias}',
+                  ),
+                  const Expanded(child: BalanceHistory())
+                ],
+              ),
+            );
+          }),
     );
   }
 }
