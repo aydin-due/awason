@@ -20,7 +20,7 @@ class Routes {
     Route(route: login, screen: const LoginScreen()),
     Route(route: register, screen: const RegisterScreen()),
     Route(route: home, screen: const MainScreen()),
-    Route(route: profile, screen: const ProfileScreen()),
+    Route(route: profile, screen: const MyProfileScreen()),
     Route(route: editProfile, screen: const EditProfileScreen()),
     Route(route: editVehicle, screen: const EditVehicleScreen()),
     Route(route: editSector, screen: const EditSectorScreen()),

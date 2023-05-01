@@ -4,14 +4,14 @@ import 'package:awason/utils/utils.dart';
 import 'package:awason/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class MyProfileScreen extends StatefulWidget {
+  const MyProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<MyProfileScreen> createState() => _MyProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _MyProfileScreenState extends State<MyProfileScreen> {
   final CarrierService _apiService = CarrierService();
 
   @override
@@ -26,6 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 return const Center(child: CircularProgressIndicator());
               }
               final Carrier carrier = snapshot.data!.data!;
+              final List<Review>? reviews = snapshot.data!.data!.reviews;
               return SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -75,7 +76,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       CircularIconButton(
                                           icon: Icons.edit_outlined,
                                           onPressed: () => Navigator.pushNamed(
-                                                  context, Routes.editProfile, arguments: carrier)
+                                                  context, Routes.editProfile,
+                                                  arguments: carrier)
                                               .then((value) => setState(() {})))
                                     ],
                                   )
@@ -94,9 +96,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         trailing: CircularIconButton(
                           icon: Icons.edit_outlined,
-                          onPressed: () =>
-                              Navigator.pushNamed(context, Routes.editVehicle, arguments: carrier.vehiculo)
-                                  .then((value) => setState(() {})),
+                          onPressed: () => Navigator.pushNamed(
+                                  context, Routes.editVehicle,
+                                  arguments: carrier.vehiculo)
+                              .then((value) => setState(() {})),
                         ),
                       ),
                       const Divider(),
@@ -109,12 +112,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         trailing: CircularIconButton(
                           icon: Icons.edit_outlined,
-                          onPressed: () =>
-                              Navigator.pushNamed(context, Routes.editPrice, arguments: carrier.precioGarrafon)
-                                  .then((value) => setState(() {})),
+                          onPressed: () => Navigator.pushNamed(
+                                  context, Routes.editPrice,
+                                  arguments: carrier.precioGarrafon)
+                              .then((value) => setState(() {})),
                         ),
                       ),
                       const Divider(),
+                      if (reviews != null && reviews.isNotEmpty) ...[
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                            Texts.reviews,
+                            style: appbarTitle,
+                          ),
+                        ),
+                        Expanded(
+                            child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, int index) {
+                            final Review review = reviews[index];
+                            return CardContainer(
+                                width: 0.8,
+                                child: Column(
+                              children: [
+                                Center(
+                          child: SizedBox(
+                            height: 50,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 5,
+                              itemBuilder: (context, index) => Icon(
+                                index < review.calificacion
+                                    ? Icons.star
+                                    : Icons.star_border,
+                                color: Colors.amber,
+                              ),
+                          ),
+                        )),
+                                const SizedBox(height: 10),
+                                Text('${review.comentario}')
+                              ],
+                            ));
+                          },
+                          itemCount: reviews.length,
+                        ))
+                      ]
                     ],
                   ),
                 ),

@@ -7,15 +7,17 @@ class CardContainer extends StatelessWidget {
     required this.child,
     this.height = 0.15,
     this.setHeight = true,
+    this.width = 1,
   });
   final Widget child;
   final double height;
   final bool setHeight;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width * width,
       height: setHeight ? MediaQuery.of(context).size.height * height : null,
       child: Card(
           elevation: 0,

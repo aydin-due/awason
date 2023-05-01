@@ -58,6 +58,7 @@ class Texts {
 
   // profile screen
   static const miPerfil = 'Mi perfil';
+  static const reviews = 'Reseñas';
 
   // edit carrier screen
   static const editarPerfil = 'Editar perfil';
