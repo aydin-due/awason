@@ -1,5 +1,5 @@
 class Review {
-  int? calificacion;
+  dynamic calificacion;
   String? comentario;
   String? idCarrier;
 

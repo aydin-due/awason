@@ -63,7 +63,8 @@ class _OngoingOrdersScreenState extends State<OngoingOrdersScreen> {
                       (value) {
                         if (value.status == "SUCCESS") {
                           final double subtotal = order.price! * order.gallons!;
-                          _showFinishedDeliveryModal(context, subtotal)
+                          _showFinishedDeliveryModal(
+                                  context, subtotal, order.id!)
                               .then((value) => refresh());
                         }
                       },
@@ -94,31 +95,85 @@ class _OngoingOrdersScreenState extends State<OngoingOrdersScreen> {
   }
 
   Future<dynamic> _showFinishedDeliveryModal(
-      BuildContext context, double subtotal) {
+      BuildContext context, double subtotal, String order) {
+    int stars = 0;
+    TextEditingController comentarios = TextEditingController();
     return showModalBottomSheet(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         isScrollControlled: true,
         context: context,
-        builder: (ctx) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Has ganado',
-                      ),
-                      Text(
-                        '\$$subtotal',
-                        style: appbarTitle,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ));
+        builder: (ctx) =>
+            StatefulBuilder(builder: (BuildContext context, StateSetter state) {
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Has ganado',
+                        ),
+                        Text(
+                          '\$$subtotal',
+                          style: appbarTitle,
+                        ),
+                        Center(
+                          child: SizedBox(
+                            height: 50,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 5,
+                              itemBuilder: (context, index) => IconButton(
+                                  splashRadius: 1,
+                                  onPressed: () {
+                                    state(() {
+                                      stars = index + 1;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    index < stars
+                                        ? Icons.star
+                                        : Icons.star_border,
+                                    color: yellow,
+                                  )),
+                            ),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: comentarios,
+                          decoration: inputDecoration.copyWith(
+                            hintText: Texts.comentarios,
+                            prefixIcon: const Icon(Icons.comment),
+                          ),
+                          maxLines: 3,
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          style: blueButton,
+                          onPressed: () async {
+                            GenericResponse response = await OrderService()
+                                .reviewClient(
+                                    order: order,
+                                    review: stars.toString(),
+                                    comment: comentarios.text);
+                            if (response.status == "SUCCESS") {
+                              if (mounted) {
+                                Navigator.pop(context);
+                              }
+                            }
+                          },
+                          child: const Text(Texts.realizarReview),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }));
   }
 }

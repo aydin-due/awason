@@ -137,4 +137,22 @@ class OrderService extends ChangeNotifier {
       throw Exception('Failed to get order request.');
     }
   }
+
+  Future<GenericResponse> reviewClient({required String order, required String review, required String comment}) async {
+    final url = Uri.https(baseUrl, '/order/$order/review/client');
+    final Map<String, dynamic> body = {
+      'reseña': {
+        'comentario': comment,
+        'calificacion': review,
+      }
+    };
+    final response = await http.put(url, body: json.encode(body), headers: {
+      'Content-Type': 'application/json',
+    });
+    if (response.statusCode == 200) {
+      return GenericResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to get order request.');
+    }
+  }
 }

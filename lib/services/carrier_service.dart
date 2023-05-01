@@ -188,7 +188,6 @@ class CarrierService extends ChangeNotifier {
 
   Future<CarrierResponse> getBalance() async {
     final id = await storage.read(key: 'user');
-    print(id);
     final url = Uri.https(baseUrl, '/carrier/balance/$id');
 
     final response = await http.get(url);

@@ -74,6 +74,8 @@ class Texts {
   static const estoyEnCamino = 'Estoy en camino';
   static const cancelarEntrega = 'Cancelar entrega';
   static const confirmarEntrega = 'Terminar entrega';
+  static const comentarios = 'Comentarios';
+  static const realizarReview = 'Realizar reseña';
 
   // order screen
   static const entrega = 'Mi entrega';

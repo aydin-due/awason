@@ -100,16 +100,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       const Divider(),
-                      // ListTile(
-                      //   leading: const Icon(Icons.location_on_outlined,
-                      //       color: Colors.black, size: 35),
-                      //   title: const Text(Texts.codigoPostal),
-                      //   subtitle: Text(
-                      //     '${carrier.}',
-                      //   ),
-                      //   trailing: BlueCircularIconButton(icon: Icons.edit_outlined, onPressed: () => Navigator.pushNamed(context, Routes.editSector),),
-                      // ),
-                      // const Divider(),
                       ListTile(
                         leading: const Icon(Icons.attach_money,
                             color: Colors.black, size: 35),

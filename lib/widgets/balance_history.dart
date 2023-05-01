@@ -1,5 +1,4 @@
 import 'package:awason/models/models.dart';
-import 'package:awason/services/carrier_service.dart';
 import 'package:awason/services/order_service.dart';
 import 'package:awason/utils/utils.dart';
 import 'package:flutter/material.dart';
