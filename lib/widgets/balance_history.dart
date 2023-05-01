@@ -27,7 +27,7 @@ class BalanceHistory extends StatelessWidget {
             builder:
                 (BuildContext context, AsyncSnapshot<OrdersResponse> snapshot) {
               if (!snapshot.hasData) {
-                return Container();
+                return const Expanded(child: Center(child: CircularProgressIndicator()));
               }
               final List<Order> orders = snapshot.data!.data!;
               return Expanded(
