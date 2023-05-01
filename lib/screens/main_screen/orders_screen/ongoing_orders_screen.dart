@@ -54,6 +54,7 @@ class _OngoingOrdersScreenState extends State<OngoingOrdersScreen> {
                     '${orderClient.horario!.horaInicial} - ${orderClient.horario!.horaFinal} horas';
 
                 return OngoingOrderCard(
+                  id: order.id!,
                   name: clientFullName,
                   address: clientAddress,
                   gallons: gallons,

@@ -56,7 +56,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           leading: const Icon(Icons.person),
                           title: const Text(Texts.verPerfil),
                           onTap: () =>
-                              Navigator.pushNamed(context, Routes.profile)
+                              Navigator.pushNamed(context, Routes.myProfile)
                                   .then((value) => setState(() {})),
                         ),
                         ListTile(

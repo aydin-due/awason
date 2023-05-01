@@ -59,6 +59,7 @@ class Texts {
   // profile screen
   static const miPerfil = 'Mi perfil';
   static const reviews = 'Reseñas';
+  static const perfilCliente = 'Perfil del cliente';
 
   // edit carrier screen
   static const editarPerfil = 'Editar perfil';
@@ -87,6 +88,7 @@ class Texts {
   static const entregado = 'Entregado';
   static const pendiente = 'Pendiente';
   static const review = 'Tu reseña';
+  static const cliente = 'Cliente';
 
   // balance screen
   static const ganancias = 'Ganancias';

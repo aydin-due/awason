@@ -132,29 +132,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (BuildContext context, int index) {
                             final Review review = reviews[index];
-                            return CardContainer(
-                                width: 0.8,
-                                child: Column(
-                              children: [
-                                Center(
-                          child: SizedBox(
-                            height: 50,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 5,
-                              itemBuilder: (context, index) => Icon(
-                                index < review.calificacion
-                                    ? Icons.star
-                                    : Icons.star_border,
-                                color: Colors.amber,
-                              ),
-                          ),
-                        )),
-                                const SizedBox(height: 10),
-                                Text('${review.comentario}')
-                              ],
-                            ));
+                            return ReviewCard(
+                              review: review,
+                              length: reviews.length,
+                            );
                           },
                           itemCount: reviews.length,
                         ))

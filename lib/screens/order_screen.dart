@@ -27,7 +27,7 @@ class OrderScreen extends StatelessWidget {
                   children: [
                     _summaryData(order),
                     _paymentData(order),
-                    _detailsData(order),
+                    _detailsData(context,order),
                   ],
                 ),
               );
@@ -59,7 +59,9 @@ class OrderScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: lightBlue, borderRadius: BorderRadius.circular(20)),
                 child: Text(
-                  order.deliveryStatus == 'done' ? Texts.entregado : Texts.pendiente,
+                  order.deliveryStatus == 'done'
+                      ? Texts.entregado
+                      : Texts.enCurso,
                   style: blueLink,
                 ),
               )
@@ -114,19 +116,59 @@ class OrderScreen extends StatelessWidget {
     );
   }
 
-  CardContainer _detailsData(Order order) {
+  CardContainer _detailsData(BuildContext context, Order order) {
     final Client client = Client.fromJson(order.clientId);
-    final String addressL1 = '${client.direccion!.calle} ${client.direccion!.numero} ${client.direccion!.colonia}';
-    final String addressL2 = '${client.direccion!.ciudad} ${client.direccion!.codigoPostal}';
+    final String addressL1 =
+        '${client.direccion!.calle} ${client.direccion!.numero} ${client.direccion!.colonia}';
+    final String addressL2 =
+        '${client.direccion!.ciudad} ${client.direccion!.codigoPostal}';
 
     return CardContainer(
       setHeight: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            children: [
+              const Text(
+                Texts.detalles,
+                style: boldDateText,
+              ),
+              const Spacer(),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, Routes.profile, arguments: client.sId),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                      color: blue, borderRadius: BorderRadius.circular(20)),
+                  child: const Text(
+                    Texts.verPerfil,
+                    style: whiteLink,
+                  ),
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 10),
           const Text(
-            Texts.detalles,
-            style: boldDateText,
+            Texts.cliente,
+            style: smallGrayText,
+          ),
+          const SizedBox(height: 5),
+          Text(
+            '${client.nombre} ${client.apellidos}',
+            style: plainText,
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            Texts.telefono,
+            style: smallGrayText,
+          ),
+          const SizedBox(height: 5),
+          Text(
+            client.numContacto.toString(),
+            style: plainText,
           ),
           const SizedBox(height: 10),
           const Text(

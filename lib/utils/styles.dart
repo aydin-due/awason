@@ -51,6 +51,12 @@ const blueLink = TextStyle(
   color: blue,
 );
 
+const whiteLink = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w500,
+  color: Colors.white,
+);
+
 const plainText = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w400,
@@ -105,15 +111,17 @@ const inputDecoration = InputDecoration(
 
 // buttons
 final blueBlockButton = ElevatedButton.styleFrom(
+  elevation: 0,
   minimumSize: const Size(double.infinity, 50),
   shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(10),
+    borderRadius: BorderRadius.circular(20),
   ),
 );
 
 final blueButton = ElevatedButton.styleFrom(
+  elevation: 0,
   shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(10),
+    borderRadius: BorderRadius.circular(20),
   ),
 );
 
