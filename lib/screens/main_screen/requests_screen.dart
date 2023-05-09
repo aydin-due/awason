@@ -24,28 +24,28 @@ class _RequestsScreenState extends State<RequestsScreen> {
                 child: Text('No hay solicitudes'),
               );
             }
-            final List<OrderRequest> requests = snapshot.data!.data!;
+            final List<Order> requests = snapshot.data!.data!;
             return ListView.builder(
               itemCount: requests.length,
               itemBuilder: (context, index) {
-                final OrderRequest request = requests[index];
-                final Client client = request.idClient!;
+                final Order request = requests[index];
+                final Client client = Client.fromJson(request.clientId!);
                 return CardContainer(
                     child: RequestCard(
                   name: '${client.nombre} ${client.apellidos}',
                   address:
                       '${client.direccion!.calle} ${client.direccion!.numero} ${client.direccion!.colonia}',
-                  gallons: request.cantGarrafones.toString(),
+                  gallons: request.gallons.toString(),
                   time:
                       '${client.horario!.horaInicial} - ${client.horario!.horaFinal} horas',
                   declineRequest: () async {
                     await _apiService
-                        .declineRequest(request.sId!)
+                        .declineRequest(request.id!)
                         .then((value) => setState(() {}));
                   },
                   acceptRequest: () async {
                     _apiService
-                        .acceptRequest(order: request.sId!)
+                        .acceptRequest(order: request.id!)
                         .then((value) => setState(() {}));
                   },
                 ));

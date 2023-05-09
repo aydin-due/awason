@@ -17,25 +17,34 @@ class OrderHistoryScreen extends StatelessWidget {
             builder:
                 (BuildContext context, AsyncSnapshot<OrdersResponse> snapshot) {
               if (snapshot.hasData) {
-                final List<Order> orders = snapshot.data!.data!;
+                final List<Order>? orders = snapshot.data!.data;
+
+                if (orders == null || orders.isEmpty) {
+                  return const Center(
+                    child: Text('No se encontró información'),
+                  );
+                }
+
                 var formatter = DateFormat('dd/MM/yyyy');
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: ListView.builder(
-                    itemCount: orders.length,
-                    itemBuilder: (context, index) {
-                      final Client client = Client.fromJson(orders[index].clientId);
-                      return GestureDetector(
-                          onTap: () => Navigator.pushNamed(context, Routes.order,
-                              arguments: orders[index].id),
-                          child: OrderHistoryCard(
-                            name: client.nombre!,
-                            address: '${client.direccion!.calle} ${client.direccion!.numero} ${client.direccion!.colonia}',
-                            gallons: orders[index].gallons.toString(),
-                            date: formatter.format(orders[index].orderDate!),
-                          ));
-                    }
-                  ),
+                      itemCount: orders.length,
+                      itemBuilder: (context, index) {
+                        final Client client =
+                            Client.fromJson(orders[index].clientId);
+                        return GestureDetector(
+                            onTap: () => Navigator.pushNamed(
+                                context, Routes.order,
+                                arguments: orders[index].id),
+                            child: OrderHistoryCard(
+                              name: client.nombre!,
+                              address:
+                                  '${client.direccion!.calle} ${client.direccion!.numero} ${client.direccion!.colonia}',
+                              gallons: orders[index].gallons.toString(),
+                              date: formatter.format(orders[index].orderDate!),
+                            ));
+                      }),
                 );
               }
               return const Center(child: CircularProgressIndicator());

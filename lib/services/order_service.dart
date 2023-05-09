@@ -10,11 +10,11 @@ class OrderService extends ChangeNotifier {
   final storage = const FlutterSecureStorage();
   final String baseUrl = 'fuzzy-stockings-boa.cyclic.app';
 
-  Future<OrderRequestResponse> getOrderRequest() async {
+  Future<OrdersResponse> getOrderRequest() async {
     final url = Uri.https(baseUrl, '/order/requests');
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      return OrderRequestResponse.fromJson(jsonDecode(response.body));
+      return OrdersResponse.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to get order request.');
     }

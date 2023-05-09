@@ -51,7 +51,7 @@ class OngoingOrderCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).pushNamed(Routes.order, arguments: id),
       child: CardContainer(
-        height: .19,
+        height: .2,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

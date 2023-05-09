@@ -27,9 +27,19 @@ class BalanceHistory extends StatelessWidget {
             builder:
                 (BuildContext context, AsyncSnapshot<OrdersResponse> snapshot) {
               if (!snapshot.hasData) {
-                return const Expanded(child: Center(child: CircularProgressIndicator()));
+                return const Expanded(
+                    child: Center(child: CircularProgressIndicator()));
               }
-              final List<Order> orders = snapshot.data!.data!;
+              final List<Order>? orders = snapshot.data!.data;
+
+              if (orders == null || orders.isEmpty) {
+                return const Expanded(
+                  child: Center(
+                    child: Text('No se encontró información'),
+                  ),
+                );
+              }
+
               return Expanded(
                 child: ListView.builder(
                     itemCount: orders.length > 7 ? 7 : orders.length,
@@ -80,7 +90,7 @@ class TransactionItem extends StatelessWidget {
       ),
       subtitle: Padding(
         padding: const EdgeInsets.only(bottom: 10),
-        child: Text('$quantity garrafones'),
+        child: Text(int.parse(quantity) > 1 ? '$quantity garrafones' : '$quantity garrafón'),
       ),
       isThreeLine: true,
       leading: Container(

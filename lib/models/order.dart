@@ -39,8 +39,8 @@ class Order {
     total = json["total"] != null ? json["total"] + 0.0 : null;
     orderStatus = json["orden_status"];
     deliveryStatus = json["entrega_status"];
-    orderDate = DateTime.tryParse(json["fecha_pedido"]);
-    deliveryDate = DateTime.tryParse(json["fecha_entrega"] ?? "");
+    orderDate = DateTime.fromMillisecondsSinceEpoch(json["fecha_pedido"] ?? 0);
+    deliveryDate = DateTime.fromMillisecondsSinceEpoch(json["fecha_entrega"] ?? 0);
     reviewCarrier = json['reseñaCarrier'];
     reviewClient = json['reseñaCliente'];
   }
